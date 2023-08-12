@@ -1,77 +1,35 @@
 # My Config
 
-## Terminal
+## Script installation
 
-### Install fish
-
+Clone this repository:
 ```sh
-sudo apt update -y
-sudo apt install -y fish
+git clone git@github.com:gsistelos/my-config.git
 ```
 
-### Fish config
-
-Install fisher plugin manager:
+Run script as sudo:
 ```sh
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+sudo script.sh
 ```
 
-Download tide fonts from: https://github.com/IlanCosman/tide#font-installation
+## Post installation
 
-Install fonts:
-```sh
-sudo mkdir -p /usr/share/fonts/truetype/mesloLGS
-sudo mv ~/Downloads/*.ttf /usr/share/fonts/truetype/mesloLGS
+Simply run `nvim` or `vim` to install plugins
+
+To setup copilot, enter neovim and run:
+```neovim
+:Copilot setup
 ```
 
-Install tide:
-```sh
-fisher install IlanCosman/tide@v5
-```
+## Configurations
 
-## Neovim
+### Terminal
 
-### Dependencies
+ - fish: the friendly interactive shell
+ - fisher: fish plugin manager
+ - tide: the ultimate fish prompt
 
-https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+### Neovim
 
-```sh
-sudo apt update -y
-sudo apt install -y ninja-build gettext cmake unzip curl
-```
-
-### Build neovim from source
-
-https://github.com/neovim/neovim/wiki/Building-Neovim#quick-start
-
-Clone neovim repository:
-```sh
-git clone https://github.com/neovim/neovim
-```
-
-Build:
-```sh
-cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
-```
-
-Create a symlink to vim:
-```sh
-sudo ln -s /usr/local/bin/nvim /usr/local/bin/vim
-```
-
-### Neovim kickstart
-
-https://github.com/nvim-lua/kickstart.nvim
-
-```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git ~/.config/nvim
-```
-
-Run `nvim` to install plugins
-
-### Copilot
-
-Uncomment in `.config/nvim/init.lua` the line `{ import = 'custom.plugins' }`
-
-Add to `.config/nvim/lua/custom/plugins/init.lua` the line `return { "github/copilot.vim" }`
+ - neovim: hyperextensible vim-based text editor
+ - init.lua: neovim configuration with useful plugins
