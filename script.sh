@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# Install fonts
+# Check if if the script is being run with sudo
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run with sudo"
+    exit 1
+fi
 
 # Install mesloLGS font
 if [ ! -d /usr/share/fonts/truetype/mesloLGS ]; then
