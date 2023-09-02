@@ -29,6 +29,8 @@ cd my-config && ./script.sh
 
 When `nvim` open it will install plugins automatically
 
+If your fish icons are not working, change the terminal font to mesloLGS
+
 To configure tide, enter fish and run:
 ```fish
 tide configure
