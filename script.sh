@@ -2,7 +2,7 @@
 
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
-sudo apt install -y fish curl git make gcc
+sudo apt install -y fish curl git make gcc clang
 
 # Install mesloLGS font
 sudo mkdir -p /usr/share/fonts/truetype
