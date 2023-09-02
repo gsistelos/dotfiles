@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Install dependencies
 sudo apt update
 sudo apt install -y fish curl git ninja-build gettext cmake unzip
 
@@ -8,11 +7,16 @@ sudo apt install -y fish curl git ninja-build gettext cmake unzip
 sudo mkdir -p /usr/share/fonts/truetype
 sudo cp -r mesloLGS /usr/share/fonts/truetype
 
+fish << END
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install IlanCosman/tide@v5
+END
+
 # Install and build neovim from source
 if [ ! -f /usr/local/bin/nvim ]; then
 	git clone https://github.com/neovim/neovim /tmp/neovim
 	make -C /tmp/neovim CMAKE_BUILD_TYPE=RelWithDebInfo
-	make -C /tmp/neovim install
+	sudo make -C /tmp/neovim install
 fi
 
 if [ -f "/usr/local/bin/vim" ]; then
