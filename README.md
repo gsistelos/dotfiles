@@ -24,7 +24,7 @@ To setup copilot, enter neovim and run:
 To configure tide, enter fish and run:
 ```fish
 tide configure
-``
+```
 
 ## Configurations
 
