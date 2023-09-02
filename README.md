@@ -25,11 +25,11 @@ To setup copilot, enter neovim and run:
 
 ### Terminal
 
- - fish: the friendly interactive shell
- - fisher: fish plugin manager
- - tide: the ultimate fish prompt
+ - [fish](https://github.com/fish-shell/fish-shell): the friendly interactive shell
+ - [fisher](https://github.com/jorgebucaran/fisher): fish plugin manager
+ - [tide](https://github.com/IlanCosman/tide): the ultimate fish prompt
 
 ### Neovim
 
- - neovim: hyperextensible vim-based text editor
- - init.lua: neovim configuration with useful plugins
+ - [neovim](https://github.com/neovim/neovim): hyperextensible vim-based text editor
+ - [init.lua](https://github.com/nvim-lua/kickstart.nvim): neovim configuration with useful plugins
