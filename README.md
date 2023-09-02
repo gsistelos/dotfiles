@@ -14,12 +14,7 @@ script.sh
 
 ## Post installation
 
-Simply run `nvim` or `vim` to install plugins
-
-To setup copilot, enter neovim and run:
-```neovim
-:Copilot setup
-```
+When `nvim` open it will install plugins automatically
 
 To configure tide, enter fish and run:
 ```fish
