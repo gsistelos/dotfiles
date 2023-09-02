@@ -4,12 +4,12 @@
 
 Clone this repository:
 ```sh
-git clone git@github.com:gsistelos/my-config.git
+git clone https://github.com/gsistelos/my-config.git
 ```
 
-Run script as sudo:
+Run script:
 ```sh
-sudo script.sh
+script.sh
 ```
 
 ## Post installation
@@ -20,6 +20,11 @@ To setup copilot, enter neovim and run:
 ```neovim
 :Copilot setup
 ```
+
+To configure tide, enter fish and run:
+```fish
+tide configure
+``
 
 ## Configurations
 
