@@ -1,15 +1,18 @@
 #!/bin/sh
 
-sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
-sudo apt install -y fish curl git make gcc clang
+sudo apt install -y software-properties-common curl git make gcc clang fuse npm unzip
+
+# Install fish
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt install -y fish
 
 # Install mesloLGS font
 sudo mkdir -p /usr/share/fonts/truetype
 sudo cp -r mesloLGS /usr/share/fonts/truetype
 
 # Install fisher and tide@v5
-fish << END
+fish <<END
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher install IlanCosman/tide@v5
 END
@@ -22,11 +25,11 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 
 if [ -f /usr/bin/nvim ]; then
-  sudo rm -rf /usr/bin/nvim
+	sudo rm -rf /usr/bin/nvim
 fi
 
 sudo mv nvim.appimage /usr/bin/nvim
 
 # Install neovim plugins and configuration
 mkdir -p ~/.config
-git clone https://github.com/nvim-lua/kickstart.nvim.git ~/.config/nvim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
