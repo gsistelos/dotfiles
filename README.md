@@ -9,7 +9,7 @@
 ### Neovim
 
  - [neovim](https://github.com/neovim/neovim): hyperextensible vim-based text editor
- - [init.lua](https://github.com/nvim-lua/kickstart.nvim): neovim configuration with useful plugins
+ - [lazyvim](https://github.com/LazyVim/LazyVim): neovim configuration with useful plugins
 
 Script does not replace existing neovim configuration
 
