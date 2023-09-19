@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sudo apt update
-sudo apt install -y software-properties-common curl git make gcc clang fuse npm unzip
+sudo apt update && sudo apt upgrade
+sudo apt install -y software-properties-common curl git make gcc clang npm unzip
 
 # Install fish
 sudo apt-add-repository ppa:fish-shell/release-3
