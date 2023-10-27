@@ -8,6 +8,9 @@ Plug('preservim/nerdtree')
 -- Theme
 Plug('dracula/vim')
 
+-- Git diff
+Plug('airblade/vim-gitgutter')
+
 -- Language parser; Syntax highlighting
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 

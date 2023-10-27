@@ -1,9 +1,12 @@
+-- Help:	https://github.com/hrsh7th/nvim-cmp
+--				https://github.com/williamboman/mason-lspconfig
+--				https://github.com/neovim/nvim-lspconfig
+
 -- LSP server manager
 require('mason').setup {}
 require('mason-lspconfig').setup {}
 
 -- LSP completion
--- Help: https://github.com/hrsh7th/nvim-cmp
 local cmp = require('cmp')
 
 cmp.setup {
@@ -18,7 +21,6 @@ cmp.setup {
 		{ name = 'buffer' }
 	},
 }
-
 
 -- LSP servers
 local lspconfig = require('lspconfig')
