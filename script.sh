@@ -23,3 +23,9 @@ sudo apt install -y tar gcc
 
 # For lspconfig
 sudo apt install -y unzip npm
+
+# Zsh
+sudo apt install -y zsh
+
+# Oh-my-zsh
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
