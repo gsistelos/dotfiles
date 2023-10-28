@@ -24,6 +24,9 @@ sudo apt install -y tar gcc
 # For lspconfig
 sudo apt install -y unzip npm
 
+# Neovim config
+git clone git@github.com:gsistelos/nvim.git ~/.config
+
 # Zsh
 sudo apt install -y zsh
 
