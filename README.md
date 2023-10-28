@@ -10,6 +10,7 @@
  - nerdtree
  - dracula (theme)
  - treesitter
+ - gitgutter
  - mason and mason-lspconfig
  - cmp-nvim-lsp, cmp-buffer, cmp-path, cmp-cmdline and nvim-cmp
  - cmp-vsnip and vim-vsnip
@@ -27,9 +28,15 @@ Run script:
 cd my-config && ./script.sh
 ```
 
+The script will install neovim, vim-plug and ohmyzsh
+
 Move nvim directory to ~/.config
 ```bash
 mv nvim ~/.config
 ```
 
 Inside nvim, run `:PlugInstall`
+
+## NerdFont
+
+Install the font mesloLGS by opening the .ttf files and clicking `Install`
