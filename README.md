@@ -28,12 +28,7 @@ Run script:
 cd my-config && ./script.sh
 ```
 
-The script will install neovim, vim-plug and ohmyzsh
-
-Move nvim directory to ~/.config
-```bash
-mv nvim ~/.config
-```
+The script will install neovim, vim-plug, neovim plugins and ohmyzsh
 
 Inside nvim, run `:PlugInstall`
 
