@@ -22,7 +22,7 @@ sudo apt install -y nodejs
 sudo apt install -y tar gcc
 
 # For lspconfig
-sudo apt install -y unzip npm
+sudo apt install -y unzip npm python3-venv
 
 # Neovim config
 git clone git@github.com:gsistelos/nvim.git ~/.config
