@@ -25,10 +25,4 @@ sudo apt install -y tar gcc
 sudo apt install -y unzip npm python3-venv
 
 # Neovim config
-git clone git@github.com:gsistelos/nvim.git ~/.config
-
-# Zsh
-sudo apt install -y zsh
-
-# Oh-my-zsh
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+git clone https://github.com/gsistelos/nvim ~/.config
