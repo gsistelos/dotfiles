@@ -19,5 +19,3 @@ git clone https://github.com/gsistelos/nvim ~/.config/nvim
 
 # plugins dependencies
 sudo apt install -y gcc nodejs
-
-nvim +PlugInstall
