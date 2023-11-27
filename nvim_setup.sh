@@ -18,4 +18,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 git clone https://github.com/gsistelos/nvim ~/.config/nvim
 
 # plugins dependencies
-sudo apt install -y gcc nodejs
+sudo apt install -y gcc make nodejs
+
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.0.1/ripgrep_14.0.1-1_amd64.deb
+sudo dpkg -i ripgrep_14.0.1-1_amd64.deb
