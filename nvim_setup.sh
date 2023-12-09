@@ -15,10 +15,13 @@ sudo mv nvim /usr/bin/
 git clone https://github.com/gsistelos/nvim ~/.config/nvim
 
 # plugins dependencies
-sudo apt install -y gcc make nodejs npm unzip tar gzip fd-find
+sudo apt install -y gcc make nodejs npm unzip tar gzip fd-find python3-venv
 
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.0.1/ripgrep_14.0.1-1_amd64.deb
 sudo dpkg -i ripgrep_14.0.1-1_amd64.deb
 
 # clipboard
 sudo apt install -y xclip
+
+# nodejs provider
+sudo npm install -g neovim
