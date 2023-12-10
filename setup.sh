@@ -113,7 +113,7 @@ while [ true ]; do
         if [ $IS_DEB = true ]; then
             sudo apt install -y gcc make unzip tar gzip fd-find ripgrep python3-venv xclip
         else
-            sudo pacman -S --noconfirm gcc make unzip tar gzip fd ripgrep python-venv xclip
+            sudo pacman -S --noconfirm gcc make unzip tar gzip fd ripgrep python-virtualenv xclip
         fi
         # node provider
         sudo npm install -g neovim
