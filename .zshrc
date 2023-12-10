@@ -72,6 +72,7 @@ ZSH_THEME="mh"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+	nvm
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
