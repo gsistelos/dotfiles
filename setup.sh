@@ -65,12 +65,11 @@ while [ true ]; do
 
     if [ $input = "y" -o $input = "yes" ]; then
         echo "${OK} Downloading..."
-        # zsh-autosuggestions
-        git clone https://github.com/zsh-users/zsh-autosuggestions \
-            ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        # zsh-syntax-highlighting
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-            ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        if [ $IS_DEB = true ]; then
+            sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting
+        else
+            sudo pacman -S --noconfirm zsh-autosuggestions zsh-syntax-highlighting
+        fi
         # .zshrc
         curl -fsSLo $HOME/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc
         break
@@ -90,10 +89,14 @@ else
 fi
 
 echo "${INFO} Installing Neovim..."
-curl -fsSLO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-chmod +x nvim.appimage
+if [ $IS_DEB = true ]; then
+    curl -fsSLO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    chmod +x nvim.appimage
 
-sudo mv nvim.appimage /usr/bin/nvim
+    sudo mv nvim.appimage /usr/bin/nvim
+else
+    sudo pacman -S --noconfirm neovim
+fi
 
 echo -n "${WARNING} Do you want to install a custom Neovim configuration? [y/N] "
 while [ true ]; do
