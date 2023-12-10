@@ -109,9 +109,9 @@ while [ true ]; do
         curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | NODE_VERSION=stable bash
         # plugins dependencies
         if [ $IS_DEB = true ]; then
-            sudo apt install -y wget gcc make unzip tar gzip fd-find ripgrep python3-venv xclip
+            sudo apt install -y wget gcc make unzip tar gzip fd-find ripgrep python3-venv python3-pip xclip
         else
-            sudo pacman -S --noconfirm wget gcc make unzip tar gzip fd ripgrep python-virtualenv xclip
+            sudo pacman -S --noconfirm wget gcc make unzip tar gzip fd ripgrep python-virtualenv python-pip xclip
         fi
         # node provider
         sudo npm install -g neovim
