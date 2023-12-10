@@ -112,8 +112,6 @@ while [ true ]; do
         else
             sudo pacman -S --noconfirm wget gcc make unzip tar gzip fd ripgrep python-virtualenv python-pip xclip
         fi
-        # node provider
-        sudo npm install -g neovim
         # nvim config
         git clone https://github.com/gsistelos/nvim.git $HOME/.config/nvim
         break
