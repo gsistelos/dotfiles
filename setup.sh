@@ -65,11 +65,10 @@ while [ true ]; do
 
     if [ $input = "y" -o $input = "yes" ]; then
         echo "${OK} Downloading..."
-        if [ $IS_DEB = true ]; then
-            sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting
-        else
-            sudo pacman -S --noconfirm zsh-autosuggestions zsh-syntax-highlighting
-        fi
+        # zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        # zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         # .zshrc
         curl -fsSLo $HOME/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc
         break
