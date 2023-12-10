@@ -106,14 +106,12 @@ while [ true ]; do
     if [ $input = "y" -o $input = "yes" ]; then
         echo "${OK} Clonning..."
         # nvm
-        curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-        # node
-        nvm install stable
+        curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | NODE_VERSION=stable bash
         # plugins dependencies
         if [ $IS_DEB = true ]; then
-            sudo apt install -y gcc make unzip tar gzip fd-find ripgrep python3-venv xclip
+            sudo apt install -y wget gcc make unzip tar gzip fd-find ripgrep python3-venv xclip
         else
-            sudo pacman -S --noconfirm gcc make unzip tar gzip fd ripgrep python-virtualenv xclip
+            sudo pacman -S --noconfirm wget gcc make unzip tar gzip fd ripgrep python-virtualenv xclip
         fi
         # node provider
         sudo npm install -g neovim
