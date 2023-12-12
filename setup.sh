@@ -30,7 +30,7 @@ while [ true ]; do
     fi
 done
 
-DEFAULT_PACKAGES="git curl zsh wget gcc make gzip unzip tar ripgrep xclip"
+DEFAULT_PACKAGES="tmux git curl zsh wget gcc make gzip unzip tar ripgrep xclip"
 
 if [ -f /etc/debian_version ]; then
     echo "${INFO} Debian based distro detected"
@@ -75,5 +75,8 @@ curl -fsSLo $HOME/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/m
 echo "${INFO} Installing Neovim configuration..."
 # nvim config
 git clone https://github.com/gsistelos/nvim.git $HOME/.config/nvim
+
+echo "${INFO} Installing Tmux configuration..."
+curl -fsSLo $HOME/.tmux.conf https://raw.githubusercontent.com/gsistelos/my-config/main/.tmux.conf
 
 echo "${OK} Done! All configurations are ready to use"
