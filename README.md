@@ -1,7 +1,7 @@
-# My Config
+# my-config
 
 ## Install
 
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/gsistelos/my-config/main/setup.sh)"
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/gsistelos/my-config/main/setup.sh)"
 ```
