@@ -14,35 +14,32 @@ WARNING="[${YELLOW}WARNING${NO_COLOR}]"
 echo -e "${WARNING} This script is meant to be run in a minimal install of a Debian or Arch based distro"
 echo -e "${WARNING} You need to have sudo privileges to run this script"
 
-echo -ne "${WARNING} Do you want to continue? [y/N] "
+echo -ne "${WARNING} Do you want to continue? [Y/n] "
 while [ true ]; do
     read input
-    input=$(echo $input | tr "[:upper:]" "[:lower:]")
+    input=$(echo $input | tr [:upper:] [:lower:])
 
-    if [ $input = "y" -o $input = "yes" ]; then
-        echo -e "${OK} Continuing..."
-        break
-    elif [ $input = "" -o $input = "n" -o $input = "no" ]; then
-        echo -e "${OK} Aborting..."
-        exit 1
-    else
-        echo -e "${ERROR} Invalid input. Try again"
-    fi
+    case $input in
+        "" | "y" | "yes")
+            echo -e "${OK} Continuing..."
+            break
+            ;;
+        "n" | "no")
+            echo -e "${OK} Aborting..."
+            exit 1
+            ;;
+        *)
+            echo -e "${ERROR} Invalid input. Try again"
+    esac
 done
 
-DEFAULT_PACKAGES="tmux git curl zsh wget gcc make gzip unzip tar ripgrep xclip"
+COMMON_PACKAGES="tmux git curl zsh wget gcc make gzip unzip tar ripgrep xclip"
 
 if [ -f /etc/debian_version ]; then
     echo -e "${INFO} Debian based distro detected"
     DISTRO_PACKAGES="fuse fd-find python3-venv python3-pip"
     PKG_UPDATE="sudo apt update -y && sudo apt upgrade -y"
     PKG_INSTALL="sudo apt install -y"
-
-    # neovim
-    curl -fsSLO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    chmod +x nvim.appimage
-
-    sudo mv nvim.appimage /usr/bin/nvim
 elif [ -f /etc/arch-release ]; then
     echo -e "${INFO} Arch based distro detected"
     DISTRO_PACKAGES="neovim fd python-virtualenv python-pip"
@@ -57,8 +54,9 @@ echo -e "${INFO} Updating system..."
 $PKG_UPDATE
 
 echo -e "${INFO} Installing packages..."
-$PKG_INSTALL $DEFAULT_PACKAGES $DISTRO_PACKAGES
-# nvm
+$PKG_INSTALL $COMMON_PACKAGES $DISTRO_PACKAGES
+
+echo -e "${INFO} Installing nvm..."
 curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | NODE_VERSION=stable bash
 
 echo -e "${INFO} Installing Oh My Zsh..."
@@ -72,11 +70,18 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.
 # .zshrc
 curl -fsSLo $HOME/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc
 
+if [ -f /etc/debian_version ]; then
+    echo -e "${INFO} Installing Neovim..."
+    curl -fsSLO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    chmod +x nvim.appimage
+
+    sudo mv nvim.appimage /usr/bin/nvim
+fi
+
 echo -e "${INFO} Installing Neovim configuration..."
-# nvim config
 git clone https://github.com/gsistelos/nvim.git $HOME/.config/nvim
 
-echo -e "${INFO} Installing Tmux configuration..."
+echo -e "${INFO} Installing tmux configuration..."
 curl -fsSLo $HOME/.tmux.conf https://raw.githubusercontent.com/gsistelos/my-config/main/.tmux.conf
 
 echo -e "${OK} Done! All configurations are ready to use"
