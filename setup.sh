@@ -37,8 +37,9 @@ COMMON_PACKAGES="tmux git curl zsh wget gcc make gzip unzip tar ripgrep xclip"
 
 if [ -f /etc/debian_version ]; then
     echo -e "${INFO} Debian based distro detected"
-    DISTRO_PACKAGES="fuse fd-find python3-venv python3-pip"
-    PKG_UPDATE="sudo apt update -y && sudo apt upgrade -y"
+    DISTRO_PACKAGES="fd-find python3-venv python3-pip"
+    PKG_UPDATE="sudo apt update -y"
+    PKG_UPGRADE="sudo apt upgrade -y"
     PKG_INSTALL="sudo apt install -y"
 elif [ -f /etc/arch-release ]; then
     echo -e "${INFO} Arch based distro detected"
@@ -51,7 +52,7 @@ else
 fi
 
 echo -e "${INFO} Updating system..."
-$PKG_UPDATE
+$PKG_UPDATE && $PKG_UPGRADE
 
 echo -e "${INFO} Installing packages..."
 $PKG_INSTALL $COMMON_PACKAGES $DISTRO_PACKAGES
