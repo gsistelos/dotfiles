@@ -53,10 +53,10 @@ fi
 
 yn_question "Install and configure i3-wm?"
 if [ $? -eq 1 ]; then
-    sudo pacman -S i3 xorg xorg-xinit picom feh
+    sudo pacman -S i3 xorg xorg-xinit picom feh scrot
 
-    echo "exec picom -f &" > ~/.xinitrc
-    echo "exec i3" >> ~/.xinitrc
+    echo "exec i3" > ~/.xinitrc
+    mkdir ~/Screenshots
 
     mkdir -p ~/.config/i3
 
@@ -65,6 +65,9 @@ if [ $? -eq 1 ]; then
     curl -fsSLo ~/.config/i3/apps.conf https://raw.githubusercontent.com/gsistelos/my-config/main/i3/apps.conf
     curl -fsSLo ~/.config/i3/windows.conf https://raw.githubusercontent.com/gsistelos/my-config/main/i3/windows.conf
     curl -fsSLo ~/.config/i3/workspaces.conf https://raw.githubusercontent.com/gsistelos/my-config/main/i3/workspaces.conf
+
+    # wallpaper
+    curl -fsSLo ~/.wallpaper.jpg https://raw.githubusercontent.com/gsistelos/my-config/main/.wallpaper.jpg
 fi
 
 yn_question "Install and configure tmux?"
