@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin:/usr/local/go/bin:$PATH"
+export PATH="~/.local/bin:/usr/local/go/bin:$PATH"
 
 export ZSH="$HOME/.oh-my-zsh"
 

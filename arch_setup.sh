@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Installs packages and utils needed for my config
+
 RED="\033[0;31m"
 YELLOW="\033[0;33m"
 NO_COLOR="\033[0m"
@@ -27,11 +29,9 @@ yn_question () {
     done
 }
 
-echo -e "${WARNING} This script is meant to be run in a minimal Arch Linux install"
-echo -e "${WARNING} Existing configurations will be overwritten"
 echo -e "${WARNING} You need to have sudo privileges to run this script"
 
-yn_question "Do you want to continue?"
+yn_question "Continue?"
 if [ $? -eq 0 ]; then
     exit 1
 fi
@@ -41,57 +41,36 @@ if [ $? -eq 1 ]; then
     sudo pacman -S pipewire pipewire-jack pipewire-alsa pipewire-pulse
 fi
 
-yn_question "Install and configure alacritty?"
-if [ $? -eq 1 ]; then
-    sudo pacman -S alacritty
-
-    mkdir -p ~/.config/alacritty
-
-    # ~/.config/alacritty/alacritty.toml
-    curl -fsSLo ~/.config/alacritty/alacritty.toml https://raw.githubusercontent.com/gsistelos/my-config/main/alacritty.toml
-fi
-
-yn_question "Install and configure i3-wm?"
+yn_question "Install i3-wm + picom + feh + scrot?"
 if [ $? -eq 1 ]; then
     sudo pacman -S i3 xorg xorg-xinit picom feh scrot
 
     echo "exec i3" > ~/.xinitrc
     mkdir ~/Screenshots
-
-    mkdir -p ~/.config/i3
-
-    # ~/.config/i3/*
-    curl -fsSLo ~/.config/i3/config https://raw.githubusercontent.com/gsistelos/my-config/main/i3/config
-    curl -fsSLo ~/.config/i3/apps.conf https://raw.githubusercontent.com/gsistelos/my-config/main/i3/apps.conf
-    curl -fsSLo ~/.config/i3/windows.conf https://raw.githubusercontent.com/gsistelos/my-config/main/i3/windows.conf
-    curl -fsSLo ~/.config/i3/workspaces.conf https://raw.githubusercontent.com/gsistelos/my-config/main/i3/workspaces.conf
-
-    # wallpaper
-    curl -fsSLo ~/.wallpaper.jpg https://raw.githubusercontent.com/gsistelos/my-config/main/.wallpaper.jpg
 fi
 
-yn_question "Install and configure tmux?"
+yn_question "Install alacritty?"
+if [ $? -eq 1 ]; then
+    sudo pacman -S alacritty
+fi
+
+yn_question "Install tmux?"
 if [ $? -eq 1 ]; then
     sudo pacman -S tmux
-
-    # ~/.tmux.conf
-    curl -fsSLo ~/.tmux.conf https://raw.githubusercontent.com/gsistelos/my-config/main/.tmux.conf
 fi
 
-yn_question "Install and configure nvim?"
+yn_question "Install nvim + nvim plugins dependencies?"
 if [ $? -eq 1 ]; then
-    sudo pacman -S neovim git wget gcc make unzip ripgrep xclip fd python-virtualenv python-pip
+    sudo pacman -S neovim
+
+    # plugins dependencies
+    sudo pacman -S git wget gcc make unzip ripgrep xclip fd python-virtualenv python-pip
 
     # nvm
     curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | NODE_VERSION=stable bash
-
-    mkdir ~/.config
-
-    # ~/.config/nvim
-    git clone https://github.com/gsistelos/nvim.git ~/.config/nvim
 fi
 
-yn_question "Install and configure ohmyzsh?"
+yn_question "Install ohmyzsh + zsh-autosuggestions + zsh-syntax-highlighting?"
 if [ $? -eq 1 ]; then
     sudo pacman -S zsh git
 
@@ -103,7 +82,4 @@ if [ $? -eq 1 ]; then
 
     # zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-    # ~/.zshrc
-    curl -fsSLo ~/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc
 fi
