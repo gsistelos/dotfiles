@@ -38,7 +38,7 @@ fi
 
 yn_question "Install pipewire?"
 if [ $? -eq 1 ]; then
-    sudo pacman -S pipewire pipewire-jack
+    sudo pacman -S pipewire pipewire-jack pipewire-alsa pipewire-pulse
 fi
 
 yn_question "Install and configure alacritty?"
