@@ -36,12 +36,39 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
+yn_question "Install pipewire?"
+if [ $? -eq 1 ]; then
+    sudo pacman -S pipewire pipewire-jack
+fi
+
+yn_question "Install and configure alacritty?"
+if [ $? -eq 1 ]; then
+    sudo pacman -S alacritty
+
+    mkdir -p ~/.config/alacritty
+
+    # ~/.config/alacritty/alacritty.toml
+    curl -fsSLo ~/.config/alacritty/alacritty.toml https://raw.githubusercontent.com/gsistelos/my-config/main/alacritty.toml
+fi
+
+yn_question "Install and configure i3-wm?"
+if [ $? -eq 1 ]; then
+    sudo pacman -S i3 xorg xorg-xinit
+
+    echo "exec i3" > ~/.xinitrc
+
+    mkdir -p ~/.config/i3
+
+    # ~/.config/i3/config
+    curl -fsSLo ~/.config/i3/config https://raw.githubusercontent.com/gsistelos/my-config/main/config
+fi
+
 yn_question "Install and configure tmux?"
 if [ $? -eq 1 ]; then
     sudo pacman -S tmux
 
-    # .tmux.conf
-    curl -fsSLo $HOME/.tmux.conf https://raw.githubusercontent.com/gsistelos/my-config/main/.tmux.conf
+    # ~/.tmux.conf
+    curl -fsSLo ~/.tmux.conf https://raw.githubusercontent.com/gsistelos/my-config/main/.tmux.conf
 fi
 
 yn_question "Install and configure nvim?"
@@ -50,6 +77,8 @@ if [ $? -eq 1 ]; then
 
     # nvm
     curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | NODE_VERSION=stable bash
+
+    mkdir ~/.config
 
     # ~/.config/nvim
     git clone https://github.com/gsistelos/nvim.git ~/.config/nvim
@@ -68,6 +97,6 @@ if [ $? -eq 1 ]; then
     # zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-    # .zshrc
-    curl -fsSLo $HOME/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc
+    # ~/.zshrc
+    curl -fsSLo ~/.zshrc https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc
 fi
