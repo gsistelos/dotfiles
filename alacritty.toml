@@ -1,2 +1,9 @@
 [env]
 TERM = "xterm-256color"
+
+[font]
+normal = { family = "JetBrains Mono NL Nerd Font Mono", style = "Regular" }
+size = 10
+
+[window]
+opacity = 0.9
