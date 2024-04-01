@@ -2,14 +2,11 @@
 
 ## Install
 
-### Arch
-
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/gsistelos/my-config/main/arch_setup.sh)"
+git clone https://github.com/gsistelos/my-config.git
+cd my-config
 ```
 
-### Debian
+Run `./arch_setup.sh` or `./debian_setup.sh`
 
-```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/gsistelos/my-config/main/debian_setup.sh)"
-```
+Run `./set_config.sh`
