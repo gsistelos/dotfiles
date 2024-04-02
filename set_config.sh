@@ -3,7 +3,7 @@
 # Copies this script's directories/files to user's configs
 # It will overwrite the existing user's configs
 #
-# Target configs: i3, alacritty, tmux, zsh
+# Target configs: i3, alacritty, picom, tmux, zsh
 #
 # Neovim config has its own repository
 
@@ -47,6 +47,11 @@ fi
 yn_question "Set alacritty config?"
 if [ $? -eq 1 ]; then
     cp -r $CONFIG_DIR/alacritty ~/.config
+fi
+
+yn_question "Set picom config?"
+if [ $? -eq 1 ]; then
+    cp -r $CONFIG_DIR/picom ~/.config
 fi
 
 yn_question "Set tmux config?"

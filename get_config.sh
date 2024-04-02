@@ -3,7 +3,7 @@
 # Copies user's configs to this script's directories/files
 # It will overwrite the existing directories/files in this script's directory
 #
-# Target configs: i3, alacritty, tmux, zsh
+# Target configs: i3, alacritty, picom, tmux, zsh
 #
 # Neovim config has its own repository
 
@@ -16,5 +16,6 @@ fi
 
 cp -r ~/.config/i3 $CONFIG_DIR
 cp -r ~/.config/alacritty $CONFIG_DIR
+cp -r ~/.config/picom $CONFIG_DIR
 cp ~/.tmux.conf $SCRIPT_DIR
 cp ~/.zshrc $SCRIPT_DIR
