@@ -15,6 +15,7 @@ if ! [ -d $CONFIG_DIR ]; then
 fi
 
 cp -r ~/.config/i3 $CONFIG_DIR
+cp -r ~/.config/i3status $CONFIG_DIR
 cp -r ~/.config/alacritty $CONFIG_DIR
 cp -r ~/.config/picom $CONFIG_DIR
 cp ~/.tmux.conf $SCRIPT_DIR

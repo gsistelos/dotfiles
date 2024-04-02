@@ -41,9 +41,9 @@ if [ $? -eq 1 ]; then
     sudo pacman -S pipewire pipewire-jack pipewire-alsa pipewire-pulse
 fi
 
-yn_question "Install i3-wm + picom + feh + scrot?"
+yn_question "Install i3-wm + picom + feh + scrot + font-awesome + noto-fonts?"
 if [ $? -eq 1 ]; then
-    sudo pacman -S i3 xorg xorg-xinit picom feh scrot
+    sudo pacman -S i3 xorg xorg-xinit picom feh scrot ttf-font-awesome noto-fonts noto-fonts-cjk noto-fonts-extra
 
     echo "exec i3" > ~/.xinitrc
     mkdir ~/Screenshots

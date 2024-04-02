@@ -42,6 +42,7 @@ fi
 yn_question "Set i3 config?"
 if [ $? -eq 1 ]; then
     cp -r $CONFIG_DIR/i3 ~/.config
+    cp -r $CONFIG_DIR/i3status ~/.config
 fi
 
 yn_question "Set alacritty config?"

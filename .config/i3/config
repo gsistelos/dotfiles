@@ -19,4 +19,8 @@ bindsym $mod+Shift+q exec i3-msg exit
 exec --no-startup-id setxkbmap br
 
 # set font
-font pango:JetBrains Mono NL Nerd Font Mono 9
+font pango:JetBrainsMonoNL NFM 9
+
+bar {
+  status_command i3status
+}

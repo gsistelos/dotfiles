@@ -2,7 +2,7 @@
 TERM = "xterm-256color"
 
 [font]
-normal = { family = "JetBrains Mono NL Nerd Font Mono", style = "Regular" }
+normal = { family = "JetBrainsMonoNL NFM", style = "Regular" }
 size = 10
 
 [window]
