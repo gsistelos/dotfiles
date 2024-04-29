@@ -10,8 +10,9 @@ WARNING="[${YELLOW}WARNING${NO_COLOR}]"
 ERROR="[${RED}ERROR${NO_COLOR}]"
 
 yn_question () {
-    echo -n "-> ${1} [Y/n] "
     while [ 42 ]; do
+        echo -n "-> ${1} [Y/n] "
+
         read input
         input=$(echo $input | tr [:upper:] [:lower:])
 
@@ -24,7 +25,6 @@ yn_question () {
             ;;
         *)
             echo -e "${ERROR} Invalid input"
-            echo -n "-> ${1} [Y/n] "
         esac
     done
 }
@@ -39,24 +39,6 @@ fi
 yn_question "Install pipewire?"
 if [ $? -eq 1 ]; then
     sudo pacman -S pipewire pipewire-jack pipewire-alsa pipewire-pulse
-fi
-
-yn_question "Install i3-wm + picom + feh + scrot + font-awesome + noto-fonts?"
-if [ $? -eq 1 ]; then
-    sudo pacman -S i3 xorg xorg-xinit picom feh scrot ttf-font-awesome noto-fonts noto-fonts-cjk noto-fonts-extra
-
-    echo "exec i3" > ~/.xinitrc
-    mkdir ~/Screenshots
-fi
-
-yn_question "Install alacritty?"
-if [ $? -eq 1 ]; then
-    sudo pacman -S alacritty
-fi
-
-yn_question "Install tmux?"
-if [ $? -eq 1 ]; then
-    sudo pacman -S tmux
 fi
 
 yn_question "Install nvim + nvim plugins dependencies?"

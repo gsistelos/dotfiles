@@ -13,8 +13,9 @@ NO_COLOR="\033[0m"
 ERROR="[${RED}ERROR${NO_COLOR}]"
 
 yn_question () {
-    echo -n "-> ${1} [Y/n] "
     while [ 42 ]; do
+        echo -n "-> ${1} [Y/n] "
+
         read input
         input=$(echo $input | tr [:upper:] [:lower:])
 
@@ -27,7 +28,6 @@ yn_question () {
             ;;
         *)
             echo -e "${ERROR} Invalid input"
-            echo -n "-> ${1} [Y/n] "
         esac
     done
 }
