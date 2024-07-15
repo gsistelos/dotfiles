@@ -1,12 +1,9 @@
 # my-config
 
-## Install
+Configuration files and setup scripts.
+
+To run setup scripts remotely:
 
 ```bash
-git clone https://github.com/gsistelos/my-config.git
-cd my-config
+sh -c "$(curl -fsSL <script_url>)"
 ```
-
-Run `./arch_setup.sh` or `./debian_setup.sh`
-
-Run `./set_config.sh`
