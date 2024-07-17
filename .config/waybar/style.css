@@ -1,3 +1,5 @@
+@import "./rose-pine.css";
+
 * {
     /* Remove defaults */
     padding: 0;
@@ -10,7 +12,7 @@
     transition: none;
 
     /* Custom defaults */
-    color: #e0def4;
+    color: @text;
     font-family: 'JetBrainsMonoNerdFont';
     font-size: 0.85rem;
 }
@@ -22,12 +24,13 @@
 .modules-right {
     margin: 4px 10px 0 0;
     padding: 0 10px;
-    background: #26233a;
+    background: @overlay;
     border-radius: 20px;
 }
 
 #workspaces {
-    background: #26233a;
+    margin: 0 8px 0 0;
+    background: @overlay;
     border-radius: 20px;
 }
 
@@ -37,28 +40,47 @@
 }
 
 #workspaces button:hover {
-    background: #403d52;
+    background: @highlightMed;
     border-radius: 20px;
 }
 
 #workspaces button.active {
-    background: #524f67;
+    background: @highlightHigh;
     border-radius: 20px;
 }
 
 #workspaces button.urgent {
-    background: #eb6f92;
+    background: @love;
     border-radius: 20px;
 }
 
 #workspaces button.urgent label {
-    color: #575279;
+    color: @base;
+}
+
+#window {
+    margin: 0 0 0 8px;
+    padding: 0 10px;
+    background: @overlay;
+    border-radius: 20px;
+}
+
+#memory {
+    margin: 0 5px 0 0;
+}
+
+#cpu {
+    margin: 0 8px 0 5px;
 }
 
 #pulseaudio.sink {
-    padding-right: 10px;
+    margin: 0 5px 0 8px;
 }
 
 #pulseaudio.source {
-    margin-right: 16px;
+    margin: 0 8px 0 5px;
+}
+
+#clock {
+    margin: 0 0 0 8px;
 }
