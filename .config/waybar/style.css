@@ -1,0 +1,64 @@
+* {
+    /* Remove defaults */
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+
+    /* Custom defaults */
+    color: #c0caf5;
+    font-family: 'JetBrainsMonoNerdFont';
+    font-size: 0.85rem;
+}
+
+.modules-left {
+    margin: 4px 0 0 10px;
+}
+
+.modules-right {
+    margin: 4px 10px 0 0;
+    padding: 0 10px;
+    background: #24283b;
+    border-radius: 20px;
+}
+
+#workspaces {
+    background: #24283b;
+    border-radius: 20px;
+}
+
+#workspaces button {
+    min-width: 24px;
+    min-height: 24px;
+}
+
+#workspaces button:hover {
+    background: #292e42;
+    border-radius: 20px;
+}
+
+#workspaces button.active {
+    background: #3b4261;
+    border-radius: 20px;
+}
+
+#workspaces button.urgent {
+    background: #ffc777;
+    border-radius: 20px;
+}
+
+#workspaces button.urgent label {
+    color: #1f2335;
+}
+
+#pulseaudio.sink {
+    padding-right: 10px;
+}
+
+#pulseaudio.source {
+    margin-right: 16px;
+}

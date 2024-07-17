@@ -2,22 +2,22 @@
 TERM = 'xterm-256color'
 
 [font]
-normal = { family = "MesloLGS NF" }
-size = 11.25
+normal = { family = "JetBrainsMonoNerdFont" }
+size = 11
 
 [colors.primary]
-background = '#1a1b26'
+background = '#24283b'
 foreground = '#a9b1d6'
 
 [colors.normal]
-black   = '#32344a'
-red     = '#f7768e'
-green   = '#9ece6a'
-yellow  = '#e0af68'
+black   = '#1f2335'
+red     = '#c53b53'
+green   = '#c3e88d'
+yellow  = '#ffc777'
 blue    = '#7aa2f7'
-magenta = '#ad8ee6'
-cyan    = '#449dab'
-white   = '#787c99'
+magenta = '#9d7cd8'
+cyan    = '#41a6b5'
+white   = '#c0caf5'
 
 [window]
 opacity = 0.9
