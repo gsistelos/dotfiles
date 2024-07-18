@@ -16,4 +16,5 @@ curl -fsSLO <file_url>
 
 ## Fonts
 
-JetBrainsMonoNerdFont
+- JetBrainsMonoNerdFont
+- FontAwesome
