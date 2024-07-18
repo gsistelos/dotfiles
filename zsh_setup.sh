@@ -13,4 +13,4 @@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_C
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # .zshrc
-curl -fsSL https://raw.githubusercontent.com/gsistelos/my-config/main/.zshrc -o ~/.zshrc
+curl -fsSL https://raw.githubusercontent.com/gsistelos/dotfiles/main/.zshrc -o ~/.zshrc

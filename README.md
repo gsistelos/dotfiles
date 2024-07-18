@@ -8,6 +8,12 @@ To run setup scripts remotely:
 sh -c "$(curl -fsSL <script_url>)"
 ```
 
+To [curl](https://linux.die.net/man/1/curl) a file:
+
+```bash
+curl -fsSLO <file_url>
+```
+
 ## Fonts
 
 JetBrainsMonoNerdFont
