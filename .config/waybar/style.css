@@ -1,86 +1,70 @@
-@import "./rose-pine.css";
+@import "./themes/rose-pine-moon.css";
 
 * {
-    /* Remove defaults */
-    padding: 0;
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    text-shadow: none;
-    transition: none;
-
-    /* Custom defaults */
-    color: @text;
     font-family: 'JetBrainsMonoNerdFont';
     font-size: 0.85rem;
 }
 
+window#waybar {
+    background-color: transparent;
+    color: @foreground;
+}
+
 .modules-left {
-    margin: 4px 0 0 10px;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+.modules-center {
+    margin-top: 4px;
 }
 
 .modules-right {
-    margin: 4px 10px 0 0;
-    padding: 0 10px;
-    background: @overlay;
-    border-radius: 20px;
+    margin-top: 4px;
+    margin-right: 10px;
 }
 
 #workspaces {
-    margin: 0 8px 0 0;
-    background: @overlay;
+    background: @background;
     border-radius: 20px;
 }
 
 #workspaces button {
-    min-width: 24px;
-    min-height: 24px;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    color: @foreground;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 20px;
 }
 
 #workspaces button:hover {
     background: @highlightMed;
-    border-radius: 20px;
 }
 
 #workspaces button.active {
     background: @highlightHigh;
-    border-radius: 20px;
 }
 
 #workspaces button.urgent {
-    background: @love;
-    border-radius: 20px;
+    background: @red;
 }
 
 #workspaces button.urgent label {
-    color: @base;
+    color: @background;
 }
 
-#window {
-    margin: 0 0 0 8px;
+#window,
+#hardware,
+#clock,
+#pulseaudio {
     padding: 0 10px;
-    background: @overlay;
+    background: @background;
     border-radius: 20px;
 }
 
 #memory {
-    margin: 0 5px 0 0;
-}
-
-#cpu {
-    margin: 0 8px 0 5px;
-}
-
-#pulseaudio.sink {
-    margin: 0 5px 0 8px;
-}
-
-#pulseaudio.source {
-    margin: 0 8px 0 5px;
-}
-
-#clock {
-    margin: 0 0 0 8px;
+    margin-right: 10px;
 }

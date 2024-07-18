@@ -1,37 +1,33 @@
 {
-    "layer": "top",
-    "position": "top",
-  
+    "spacing": 12,
+
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/window",
     ],
-    "modules-center": [],
-    "modules-right": [
-        "memory",
-        "cpu",
-        "pulseaudio#sink",
-        "pulseaudio#source",
+    "modules-center": [
         "clock",
+        "tray",
     ],
-  
+    "modules-right": [
+        "pulseaudio",
+        "group/hardware",
+    ],
+
+    // modules-left
     "hyprland/workspaces": {
     },
     "hyprland/window": {
         "format": " - {title}",
     },
 
-    "memory": {
-        "interval": 10,
-        "format": "  {used:0.1f}GiB",
+    // modules-center
+    "clock": {
+        "format": "󰥔 {:%H:%M  󰨲 %d-%m-%Y}",
     },
-    "cpu": {
-        "interval": 10,
-        "format": " {usage}% {icon0}{icon1}{icon2}{icon3}",
-        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    },
-    "pulseaudio#sink": {
-        "format": "{icon}  {volume}%",
+
+    // modules-right
+    "pulseaudio": {
         "format-muted": "   0%",
         "format-icons": {
             "default": [
@@ -40,23 +36,31 @@
                 "",
             ],
         },
-    
-        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
-    
-        "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 2%+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 2%-",
-    },
-    "pulseaudio#source": {
+
         "format-source": " {volume}%",
         "format-source-muted": "  0%",
-        "format": "{format_source}",
-    
+
+        "format": "{icon}  {volume}% {format_source}",
+
         "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
-    
+
         "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 1%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 1%-",
     },
-    "clock": {
-        "format": "󰥔 {:%H:%M}",
+    "group/hardware": {
+        "orientation": "inherit",
+        "modules": [
+            "memory",
+            "cpu",
+        ],
+    },
+    "memory": {
+        "interval": 10,
+        "format": "  {used:0.1f}GiB",
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}% {icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
 }
