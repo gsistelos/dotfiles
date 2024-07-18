@@ -28,7 +28,7 @@
 
     // modules-right
     "pulseaudio": {
-        "format-muted": "   0%",
+        "format-muted": "   0% {format_source}",
         "format-icons": {
             "default": [
                 "",
