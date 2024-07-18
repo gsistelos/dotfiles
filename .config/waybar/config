@@ -18,29 +18,22 @@
     "hyprland/workspaces": {
     },
     "hyprland/window": {
-        "format": " - {title}",
+        "format": "  - {title}",
     },
 
     // modules-center
     "clock": {
-        "format": "󰥔 {:%H:%M  󰨲 %d-%m-%Y}",
+        "format": "󰥔  {:%H:%M  󰨲  %d-%m-%Y}",
     },
 
     // modules-right
     "pulseaudio": {
-        "format-muted": "   0% {format_source}",
-        "format-icons": {
-            "default": [
-                "",
-                "",
-                "",
-            ],
-        },
+        "format-source": "  {volume}%",
+        "format-source-muted": "   {volume}%",
 
-        "format-source": " {volume}%",
-        "format-source-muted": "  0%",
-
-        "format": "{icon}  {volume}% {format_source}",
+        "format-muted": "    {volume}%  {format_source}",
+        "format": "{icon}    {volume}%  {format_source}",
+        "format-icons": ["", "", ""],
 
         "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
 
@@ -60,7 +53,7 @@
     },
     "cpu": {
         "interval": 10,
-        "format": " {usage}% {icon0}{icon1}{icon2}{icon3}",
+        "format": "   {usage}% {icon0}{icon1}{icon2}{icon3}",
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
 }

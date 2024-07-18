@@ -1,7 +1,7 @@
 @import "./themes/rose-pine-moon.css";
 
 * {
-    font-family: 'JetBrainsMonoNerdFont';
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 0.85rem;
 }
 
