@@ -1,8 +1,10 @@
 @import "./themes/rose-pine-moon.css";
 
 * {
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    /* Any NerdFontPropo */
+    font-family: 'UbuntuNerdFontPropo';
     font-size: 0.85rem;
+    font-weight: 400;
 }
 
 window#waybar {
