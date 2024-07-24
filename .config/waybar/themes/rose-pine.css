@@ -1,0 +1,12 @@
+@define-color background #26233a; /* Overlay */
+@define-color foreground #e0def4;
+
+@define-color red #eb6f92;
+@define-color yellow #f6c177;
+@define-color cyan #ebbcba;
+@define-color green #31748f;
+@define-color blue #9ccfd8;
+@define-color magenta #c4a7e7;
+
+@define-color hover #393552; /* Moon Overlay */
+@define-color active #44415a; /* Moon HighlightMed */

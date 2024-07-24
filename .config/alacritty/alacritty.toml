@@ -1,5 +1,5 @@
 import = [
-    "./themes/rose-pine.toml"
+    './themes/rose-pine.toml'
 ]
 
 [env]

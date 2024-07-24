@@ -1,4 +1,4 @@
-@import "./themes/rose-pine-moon.css";
+@import "./themes/rose-pine.css";
 
 * {
     /* Any NerdFontPropo */
@@ -43,11 +43,11 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background: @highlightMed;
+    background: @hover;
 }
 
 #workspaces button.active {
-    background: @highlightHigh;
+    background: @active;
 }
 
 #workspaces button.urgent {
