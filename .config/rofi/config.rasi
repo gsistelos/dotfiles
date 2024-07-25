@@ -1,0 +1,90 @@
+* {
+    background: #191724;
+    foreground: #e0def4;
+    red:        #eb6f92;
+    yellow:     #f6c177;
+    cyan:       #ebbcba;
+    green:      #31748f;
+    blue:       #9ccfd8;
+    magenta:    #c4a7e7;
+
+    font:  "JetBrainsMonoNerdFontMono";
+    color: @foreground;
+}
+
+#window {
+    border:  0;
+    padding: 12px;
+    width:   500px;
+}
+
+#listview {
+    border:  0;
+}
+
+#element {
+    padding:       4px;
+    border-radius: 4px;
+}
+
+#element.normal.normal {
+}
+
+#element.normal.active {
+    background-color: @blue;
+}
+
+#element.normal.urgent {
+    background-color: @red;
+}
+
+#element.alternate.normal {
+    background-color: @background;
+}
+
+#element.alternate.active {
+    background-color: @blue;
+}
+
+#element.alternate.urgent {
+    background-color: @red;
+}
+
+#element.selected.normal {
+    background-color: @green;
+    color:            @foreground;
+}
+
+#element.selected.active {
+    background-color: @blue;
+}
+
+#element.selected.urgent {
+    background-color: @red;
+}
+
+#scrollbar {
+    handle-width: 2px;
+}
+
+#prompt {
+    color: @blue;
+}
+
+#textbox-prompt-colon {
+    color: @blue;
+    str:    ":";
+    margin: 0 4px 0 0;
+}
+
+#entry {
+    placeholder: "Search";
+}
+
+#inputbar {
+    children: [
+        prompt,
+        textbox-prompt-colon,
+        entry
+    ];
+}
