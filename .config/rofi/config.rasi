@@ -1,3 +1,12 @@
+configuration {
+    display-run:         "Run:";
+    display-drun:        "Applications:";
+    display-window:      "Windows:";
+    drun-display-format: "{icon} {name}";
+    font:                "JetBrainsMonoNerdFontMono";
+    show-icons:          true;
+}
+
 * {
     background: #191724;
     foreground: #e0def4;
@@ -8,18 +17,33 @@
     blue:       #9ccfd8;
     magenta:    #c4a7e7;
 
-    font:  "JetBrainsMonoNerdFontMono";
     color: @foreground;
 }
 
 #window {
     border:  0;
-    padding: 12px;
+    padding: 0;
     width:   500px;
 }
 
+#prompt {
+    margin: 0 4px 0 0;
+}
+
+#entry {
+    placeholder: "Search";
+}
+
+#inputbar {
+    padding:          10px;
+    children: [
+        prompt,
+        entry
+    ];
+}
+
 #listview {
-    border:  0;
+    border: 0;
 }
 
 #element {
@@ -51,8 +75,8 @@
 }
 
 #element.selected.normal {
-    background-color: @green;
-    color:            @foreground;
+    background-color: @background;
+    color:            @green;
 }
 
 #element.selected.active {
@@ -64,27 +88,5 @@
 }
 
 #scrollbar {
-    handle-width: 2px;
-}
-
-#prompt {
-    color: @blue;
-}
-
-#textbox-prompt-colon {
-    color: @blue;
-    str:    ":";
-    margin: 0 4px 0 0;
-}
-
-#entry {
-    placeholder: "Search";
-}
-
-#inputbar {
-    children: [
-        prompt,
-        textbox-prompt-colon,
-        entry
-    ];
+    handle-width: 0px;
 }
