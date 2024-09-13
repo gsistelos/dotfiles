@@ -1,12 +1,10 @@
 {
-    "spacing": 12,
-
     "modules-left": [
-        "hyprland/workspaces",
+        "clock",
         "hyprland/window",
     ],
     "modules-center": [
-        "clock",
+        "hyprland/workspaces",
     ],
     "modules-right": [
         "pulseaudio",
@@ -14,7 +12,8 @@
     ],
 
     // modules-left
-    "hyprland/workspaces": {
+    "clock": {
+        "format": "{:%H:%M%A, %d/%m}",
     },
     "hyprland/window": {
         "format": "  {title}",
@@ -22,8 +21,7 @@
     },
 
     // modules-center
-    "clock": {
-        "format": "{:%H:%M%A, %d/%m}",
+    "hyprland/workspaces": {
     },
 
     // modules-right
