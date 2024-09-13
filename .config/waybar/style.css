@@ -3,7 +3,7 @@
 * {
     /* Any NerdFontPropo */
     font-family: 'UbuntuNerdFontPropo';
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 400;
 }
 
@@ -12,22 +12,11 @@ window#waybar {
     color: @foreground;
 }
 
-.modules-left {
-    margin-top: 4px;
-    margin-left: 10px;
-}
-
-.modules-center {
-    margin-top: 4px;
-}
-
+.modules-left,
+.modules-center,
 .modules-right {
-    margin-top: 4px;
-    margin-right: 10px;
-}
-
-#workspaces {
-    background: @background;
+    margin: 2px 8px 0 8px;
+    background-color: @background;
     border-radius: 20px;
 }
 
@@ -37,8 +26,8 @@ window#waybar {
     box-shadow: none;
     text-shadow: none;
     color: @foreground;
-    min-width: 30px;
-    min-height: 30px;
+    min-width: 25px;
+    min-height: 25px;
     border-radius: 20px;
 }
 
@@ -63,8 +52,6 @@ window#waybar {
 #clock,
 #pulseaudio {
     padding: 0 10px;
-    background: @background;
-    border-radius: 20px;
 }
 
 #memory {
