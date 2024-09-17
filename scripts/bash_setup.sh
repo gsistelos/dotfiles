@@ -4,6 +4,8 @@ source utils.sh
 
 PACKAGES=("bash" "curl" "bash-completion")
 
+ensure_installed
+
 # git-prompt.sh
 curl -fsSL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
 
