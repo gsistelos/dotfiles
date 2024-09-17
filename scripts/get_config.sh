@@ -2,7 +2,7 @@
 
 DOTFILES=(
     ".tmux.conf"
-    ".zshrc"
+    ".bashrc"
 )
 
 DOTDIRS=(
