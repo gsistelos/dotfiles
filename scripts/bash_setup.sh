@@ -2,7 +2,11 @@
 
 source utils.sh
 
-PACKAGES=("bash" "curl" "bash-completion")
+PACKAGES=(
+	"bash"
+	"curl"
+	"bash-completion"
+)
 
 ensure_installed
 

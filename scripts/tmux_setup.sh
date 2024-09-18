@@ -2,7 +2,11 @@
 
 source utils.sh
 
-PACKAGES=("tmux" "git" "curl")
+PACKAGES=(
+	"tmux"
+	"git"
+	"curl"
+)
 
 ensure_installed
 
