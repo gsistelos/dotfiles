@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export EDITOR=nvim
 export BROWSER=firefox
 
