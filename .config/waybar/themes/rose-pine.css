@@ -1,4 +1,4 @@
-@define-color background #2a273f; /* Moon Surface */
+@define-color background rgba(42, 39, 63, 0.6); /* Moon Surface */
 @define-color foreground #e0def4;
 
 @define-color red #eb6f92;

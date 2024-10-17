@@ -8,25 +8,8 @@
 }
 
 window#waybar {
-    background-color: transparent;
     color: @foreground;
-}
-
-.modules-left,
-.modules-center,
-.modules-right {
-    margin: 3px 8px 0 8px;
     background-color: @background;
-    border-radius: 20px;
-}
-
-.modules-left,
-.modules-right {
-    padding: 0 10px;
-}
-
-#clock {
-    margin-right: 10px;
 }
 
 #workspaces button {
@@ -37,7 +20,7 @@ window#waybar {
     color: @foreground;
     min-width: 25px;
     min-height: 25px;
-    border-radius: 20px;
+    border-radius: 0px;
 }
 
 #workspaces button:hover {
@@ -54,9 +37,4 @@ window#waybar {
 
 #workspaces button.urgent label {
     color: @background;
-}
-
-#memory {
-    margin-left: 10px;
-    margin-right: 10px;
 }
