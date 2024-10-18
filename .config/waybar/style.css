@@ -1,40 +1,45 @@
 @import "./themes/rose-pine.css";
 
 * {
-    /* Any NerdFontPropo */
-    font-family: 'UbuntuNerdFontPropo';
-    font-size: 0.9rem;
-    font-weight: 500;
+	/* Any NerdFontPropo */
+	font-family: 'UbuntuNerdFontPropo';
+	font-size: 0.9rem;
+	font-weight: 500;
 }
 
 window#waybar {
-    color: @foreground;
-    background-color: @background;
+	color: @foreground;
+	background-color: @background;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+	border-bottom: 1px solid @foreground;
 }
 
 #workspaces button {
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    text-shadow: none;
-    color: @foreground;
-    min-width: 25px;
-    min-height: 25px;
-    border-radius: 0px;
+	/* Remove defaults */
+	padding: 0;
+	border: none;
+	box-shadow: none;
+	text-shadow: none;
+	border-radius: 0px;
+
+	color: @foreground;
+	min-width: 25px;
+	min-height: 25px;
 }
 
 #workspaces button:hover {
-    background: @hover;
+	background: @hover;
 }
 
 #workspaces button.active {
-    background: @active;
-}
-
-#workspaces button.urgent {
-    background: @red;
+	border-top: 1px solid @foreground;
+	background: @active;
 }
 
 #workspaces button.urgent label {
-    color: @background;
+	color: @red;
 }
