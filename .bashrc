@@ -5,28 +5,47 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
 export PATH="$HOME/.local/bin:$PATH"
 
-export EDITOR=nvim
-export BROWSER=firefox
+export EDITOR="nvim"
+export BROWSER="firefox"
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+
 
 # Prompt
+RESET="\[\e[0m\]"
+GREEN="\[\e[92m\]"
+BLUE="\[\e[94m\]"
+CYAN="\[\e[96m\]"
+
+PRE="${BLUE}[${RESET}"
+POST="${BLUE}]\$${RESET}"
+
+DIR="${GREEN}\W${RESET}"
+
 source $HOME/.git-prompt.sh
-PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " %s")'; \
-  PS1='\[\e[94m\][\[\e[0m\] \[\e[92m\]\W\[\e[96m\]${PS1_CMD1}\[\e[0m\] \[\e[94m\]]\$\[\e[0m\] '
+GIT_COMMAND='$(__git_ps1 " %s")'
+GIT_PROMPT="${CYAN}${GIT_COMMAND}${RESET}"
+
+PS1="${PRE} ${DIR}${GIT_PROMPT} ${POST} "
+
 
 # bash-completion
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-  . /usr/share/bash-completion/bash_completion
+  source /usr/share/bash-completion/bash_completion
+
 
 # nvm
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+
 source /usr/share/nvm/nvm.sh
 source /usr/share/nvm/bash_completion
 source /usr/share/nvm/install-nvm-exec
+
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
