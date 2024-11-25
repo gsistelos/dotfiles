@@ -6,14 +6,8 @@
 [[ $- != *i* ]] && return
 
 
-export PATH="$HOME/.local/bin:$PATH"
-
 export EDITOR="nvim"
 export BROWSER="firefox"
-
-
-alias ls="ls --color=auto"
-alias grep="grep --color=auto"
 
 
 # Prompt
@@ -49,7 +43,6 @@ source /usr/share/nvm/install-nvm-exec
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+
+
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PNPM_HOME:$PATH"
