@@ -1,92 +1,63 @@
 configuration {
-    display-run:         "Run:";
-    display-drun:        "Applications:";
-    display-window:      "Windows:";
-    drun-display-format: "{icon} {name}";
-    font:                "JetBrainsMonoNerdFontMono";
-    show-icons:          true;
+    font:       "JetBrainsMonoNerdFontMono";
+    show-icons: true;
 }
 
 * {
-    background: #191724;
-    foreground: #e0def4;
-    red:        #eb6f92;
-    yellow:     #f6c177;
-    cyan:       #ebbcba;
-    green:      #31748f;
-    blue:       #9ccfd8;
-    magenta:    #c4a7e7;
+    background:                  #191724;
+    foreground:                  #e0def4;
+    entry-color:                 #6e6a86;
+    element-background:          #191724;
+    element-alt-background:      #191724;
+    element-selected-background: #232136;
+    element-selected-color:      #3e8fb0;
 
     color: @foreground;
 }
 
-#window {
+window {
     border:  0;
     padding: 0;
-    width:   500px;
+    height:  356px;
+    width:   700px;
 }
 
-#prompt {
-    margin: 0 4px 0 0;
+entry {
+    placeholder:       "Search";
+    placeholder-color: @entry-color;
 }
 
-#entry {
-    placeholder: "Search";
-}
-
-#inputbar {
-    padding:          10px;
+inputbar {
+    padding:  15px;
     children: [
-        prompt,
         entry
     ];
 }
 
-#listview {
-    border: 0;
+listview {
+    border:  0;
+    padding: 0;
+    spacing: 0;
 }
 
-#element {
-    padding:       4px;
-    border-radius: 4px;
+element {
+    padding:       10px 15px;
+    border-radius: 0;
 }
 
-#element.normal.normal {
+element normal normal {
+    background-color: @element-background;
 }
 
-#element.normal.active {
-    background-color: @blue;
+element alternate normal {
+    background-color: @element-alt-background;
 }
 
-#element.normal.urgent {
-    background-color: @red;
+element selected normal {
+    background-color: @element-selected-background;
+    color:            @element-selected-color;
 }
 
-#element.alternate.normal {
-    background-color: @background;
-}
-
-#element.alternate.active {
-    background-color: @blue;
-}
-
-#element.alternate.urgent {
-    background-color: @red;
-}
-
-#element.selected.normal {
-    background-color: @background;
-    color:            @green;
-}
-
-#element.selected.active {
-    background-color: @blue;
-}
-
-#element.selected.urgent {
-    background-color: @red;
-}
-
-#scrollbar {
-    handle-width: 0px;
+scrollbar {
+    handle-width: 1px;
 }
