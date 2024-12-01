@@ -11,15 +11,12 @@ set:
 
 .PHONY: bash
 bash:
-	cd $(SCRIPT_DIR)
 	./$(SCRIPT_DIR)/bash_setup.sh
 
 .PHONY: tmux
 tmux:
-	cd $(SCRIPT_DIR)
 	./$(SCRIPT_DIR)/tmux_setup.sh
 
 .PHONY: zsh
 zsh:
-	cd $(SCRIPT_DIR)
 	./$(SCRIPT_DIR)/zsh_setup.sh

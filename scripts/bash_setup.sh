@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source utils.sh
+source scripts/utils.sh
 
 PACKAGES=(
 	"bash"
