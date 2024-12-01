@@ -1,12 +1,3 @@
-#!/bin/env bash
-
-DOTFILES=(
-	".tmux.conf"
-	".bashrc"
-)
-
-for DOTFILE in ${DOTFILES[@]}; do
-	cp -r $DOTFILE ~/$DOTFILE
-done
+#!/usr/bin/env bash
 
 cp -r .config ~/

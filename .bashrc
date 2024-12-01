@@ -6,6 +6,12 @@
 [[ $- != *i* ]] && return
 
 
+alias ls="ls --color=auto"
+
+alias ll="ls -l"
+alias la="ls -la"
+
+
 export EDITOR="nvim"
 export BROWSER="firefox"
 
@@ -16,16 +22,13 @@ GREEN="\[\e[92m\]"
 BLUE="\[\e[94m\]"
 CYAN="\[\e[96m\]"
 
-PRE="${BLUE}[${RESET}"
-POST="${BLUE}]\$${RESET}"
-
 DIR="${GREEN}\W${RESET}"
 
 source $HOME/.git-prompt.sh
 GIT_COMMAND='$(__git_ps1 " %s")'
 GIT_PROMPT="${CYAN}${GIT_COMMAND}${RESET}"
 
-PS1="${PRE} ${DIR}${GIT_PROMPT} ${POST} "
+PS1="${BLUE}[${RESET} ${DIR}${GIT_PROMPT} ${BLUE}]\$${RESET} "
 
 
 # bash-completion
@@ -33,16 +36,4 @@ PS1="${PRE} ${DIR}${GIT_PROMPT} ${POST} "
   source /usr/share/bash-completion/bash_completion
 
 
-# nvm
-[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-
-source /usr/share/nvm/nvm.sh
-source /usr/share/nvm/bash_completion
-source /usr/share/nvm/install-nvm-exec
-
-
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-
-
-export PATH="$HOME/.local/bin:$HOME/go/bin:$PNPM_HOME:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
