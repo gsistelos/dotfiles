@@ -1,7 +1,7 @@
 # Hyprland
 
 ```sh
-pacman -S --needed hyprland hyprpaper xdg-desktop-portal-hyprland polkit-kde-agent qt5-wayland qt6-wayland
+pacman -S --needed hyprland hyprpaper xdg-desktop-portal-hyprland polkit-kde-agent qt5-wayland dunst
 ```
 
 ## Fonts
@@ -36,7 +36,7 @@ options nvidia_drm modeset=1 fbdev=1
 
 Run:
 
-```bash
+```sh
 sudo mkinitcpio -P
 ```
 
