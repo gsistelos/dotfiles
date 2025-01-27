@@ -26,9 +26,9 @@ REQUIRED_PACKAGES=(
 require_packages
 
 CONFIG_DIR="../.config"
-USER_CONFIG_DIR="~/.config"
+USER_CONFIG_DIR="$HOME/.config"
 
-cp -r ${CONFIG_DIR}/hypr      ${USER_CONFIG_DIR}/.config
-cp -r ${CONFIG_DIR}/waybar    ${USER_CONFIG_DIR}/.config
-cp -r ${CONFIG_DIR}/rofi      ${USER_CONFIG_DIR}/.config
-cp -r ${CONFIG_DIR}/alacritty ${USER_CONFIG_DIR}/.config
+cp -r ${CONFIG_DIR}/hypr      ${USER_CONFIG_DIR}
+cp -r ${CONFIG_DIR}/waybar    ${USER_CONFIG_DIR}
+cp -r ${CONFIG_DIR}/rofi      ${USER_CONFIG_DIR}
+cp -r ${CONFIG_DIR}/alacritty ${USER_CONFIG_DIR}

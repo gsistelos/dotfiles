@@ -1,8 +1,8 @@
 # dotfiles
 
-Dotfiles and setup scripts.
+```sh
+git clone --depth 1 https://github.com/gsistelos/dotfiles
+cd dotfiles/scripts
+```
 
-## Fonts
-
-- JetBrainsMonoNerdFontMono: `ttf-jetbrains-mono-nerd`
-- UbuntuNerdFontPropo: `ttf-ubuntu-nerd`
+Then run the setup scripts.
