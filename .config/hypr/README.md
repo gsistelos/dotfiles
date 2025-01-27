@@ -1,21 +1,5 @@
 # Hyprland
 
-```sh
-pacman -S --needed hyprland hyprpaper xdg-desktop-portal-hyprland polkit-kde-agent qt5-wayland dunst
-```
-
-## Fonts
-
-```sh
-pacman -S --needed noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
-```
-
-## Screenshot
-
-```sh
-pacman -S --needed grim slurp wl-clipboard
-```
-
 ## Nvidia + Wayland
 
 ```sh

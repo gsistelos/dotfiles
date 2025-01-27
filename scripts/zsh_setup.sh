@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-source scripts/utils.sh
+source utils.sh
 
-PACKAGES=(
+REQUIRED_PACKAGES=(
 	"zsh"
 	"git"
 	"curl"
 )
 
-ensure_installed
+require_packages
 
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended

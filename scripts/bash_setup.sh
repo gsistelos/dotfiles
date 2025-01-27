@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-source scripts/utils.sh
+source utils.sh
 
-PACKAGES=(
+REQUIRED_PACKAGES=(
 	"bash"
 	"curl"
 	"bash-completion"
 )
 
-ensure_installed
+require_packages
 
 # git-prompt.sh
 curl -fsSL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
