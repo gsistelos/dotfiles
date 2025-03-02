@@ -1,12 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-source utils.sh
+source ./utils.sh
 
 REQUIRED_PACKAGES=(
+	greetd-regreet
+
+	uwsm
+
 	hyprland
 	hyprpaper
 	xdg-desktop-portal-hyprland
-	polkit-kde-agent
+	hyprpolkitagent
 	qt5-wayland
 	dunst
 	noto-fonts
@@ -32,3 +36,7 @@ cp -r ${CONFIG_DIR}/hypr      ${USER_CONFIG_DIR}
 cp -r ${CONFIG_DIR}/waybar    ${USER_CONFIG_DIR}
 cp -r ${CONFIG_DIR}/rofi      ${USER_CONFIG_DIR}
 cp -r ${CONFIG_DIR}/alacritty ${USER_CONFIG_DIR}
+
+systemctl --user enable --now hyprpolkitagent.service
+
+sudo systemctl enable greetd

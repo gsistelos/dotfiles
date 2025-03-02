@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-source utils.sh
+source ./utils.sh
 
 REQUIRED_PACKAGES=(
 	"tmux"
