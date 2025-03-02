@@ -13,54 +13,49 @@
 	],
 
 	"hyprland/workspaces": {
-		"disable-scroll": false,
-		"on-scroll-up": "hyprctl dispatch workspace -1",
-		"on-scroll-down": "hyprctl dispatch workspace +1"
-	},
-
-	"clock#date": {
-		"format": "󰨳 {:%d-%m}",
-		"tooltip-format": "<tt>{calendar}</tt>",
-
-		"calendar": {
-			"mode": "month",
-			"mode-mon-col": 4,
-			"on-click-right": "mode",
-			"format": {
-				"months": "<span color='#31748f'><b>{}</b></span>",
-				"weekdays": "<span color='#f6c177'><b>{}</b></span>",
-				"days": "<span color='#e0def4'>{}</span>",
-				"today": "<span color='#eb6f92'><b>{}</b></span>"
-			}
+		"format": "{icon}",
+		"format-icons": {
+			"active":  "",
+			"default": ""
 		},
 
-		"actions": { "on-click": "mode" },
+		"on-scroll-up":   "hyprctl dispatch workspace -1",
+		"on-scroll-down": "hyprctl dispatch workspace +1",
+
+		"persistent-workspaces": {
+			"*": 5
+		}
+	},
+
+	"clock#time": {
+		"format":         " {:%H:%M}",
+		"tooltip-format": " {:%I:%M %p}",
 
 		"min-length": 9,
 		"max-length": 9
 	},
 
-	"clock#time": {
-		"format": "󱑂 {:%H:%M}",
-		"tooltip-format": "󱑂 {:%I:%M %p}",
+	"clock#date": {
+		"format": " {:%d-%m}",
 
 		"min-length": 9,
 		"max-length": 9
 	},
 
 	"pulseaudio": {
-		"format-source": " {volume}%",
-		"format-source-muted": "󰍭 {volume}%",
+		"format-source":       " {volume}%",
+		"format-source-muted": " {volume}%",
 
 		"format-icons": ["", "", ""],
 
-		"format": "{icon} {volume}%  {format_source}",
-		"format-muted": " {volume}%  {format_source}",
+		"format":       "{icon} {volume}%  {format_source}",
+		"format-muted": " {volume}%  {format_source}",
+
 		"tooltip": false,
 
 		"on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
 
-		"on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 1%+",
+		"on-scroll-up":   "wpctl set-volume @DEFAULT_SOURCE@ 1%+",
 		"on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 1%-",
 
 		"min-length": 16,
@@ -70,18 +65,18 @@
 	"memory": {
 		"interval": 10,
 
-		"format": "󰘚 {used:0.1f} GiB/{total:0.1f} GiB",
+		"format":  " {used:0.1f}/{total:0.1f} GiB",
 		"tooltip": false,
 
-		"min-length": 16,
-		"max-length": 16
+		"min-length": 13,
+		"max-length": 13
 	},
 
 	"cpu": {
 		"interval": 10,
 
-		"format": " {usage}%",
-		"tooltip-format": "{usage}%",
+		"format":  " {usage}%",
+		"tooltip": false,
 
 		"min-length": 8,
 		"max-length": 8

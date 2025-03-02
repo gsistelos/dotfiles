@@ -10,8 +10,9 @@ REQUIRED_PACKAGES=(
 
 require_packages
 
-# .bashrc
-curl -fsSL https://raw.githubusercontent.com/gsistelos/dotfiles/main/.bashrc -o ~/.bashrc
+DOTS="$(cd .. && pwd)"
+
+ln -s ${DOTS}/.bashrc ${HOME}
 
 # uv
 curl -LsSf https://astral.sh/uv/install.sh | env INSTALLER_NO_MODIFY_PATH=1 sh

@@ -9,5 +9,6 @@ REQUIRED_PACKAGES=(
 
 require_packages
 
-# .tmux.conf
-curl -fsSL https://raw.githubusercontent.com/gsistelos/dotfiles/main/.tmux.conf -o ~/.tmux.conf
+DOTS="$(cd .. && pwd)"
+
+ln -s ${DOTS}/.tmux.conf ${HOME}

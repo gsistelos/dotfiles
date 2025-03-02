@@ -29,14 +29,16 @@ REQUIRED_PACKAGES=(
 
 require_packages
 
-CONFIG_DIR="../.config"
-USER_CONFIG_DIR="$HOME/.config"
+DOTS_CONFIG="$(cd .. && pwd)/.config"
+USER_CONFIG="${HOME}/.config"
 
-cp -r ${CONFIG_DIR}/hypr      ${USER_CONFIG_DIR}
-cp -r ${CONFIG_DIR}/waybar    ${USER_CONFIG_DIR}
-cp -r ${CONFIG_DIR}/rofi      ${USER_CONFIG_DIR}
-cp -r ${CONFIG_DIR}/alacritty ${USER_CONFIG_DIR}
+ln -s ${DOTS_CONFIG}/hypr      ${USER_CONFIG}
+ln -s ${DOTS_CONFIG}/waybar    ${USER_CONFIG}
+ln -s ${DOTS_CONFIG}/rofi      ${USER_CONFIG}
+ln -s ${DOTS_CONFIG}/alacritty ${USER_CONFIG}
+
+DOTS="$(cd .. && pwd)"
+
+ln -s ${DOTS}/.wallpapers ${HOME}
 
 systemctl --user enable --now hyprpolkitagent.service
-
-sudo systemctl enable greetd

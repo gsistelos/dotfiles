@@ -1,15 +1,7 @@
-/* Moon Surface */
-@define-color background rgba(42, 39, 63, 0.3);
+@define-color background rgba(25, 23, 36, 0.3);
 @define-color foreground #e0def4;
 
 @define-color red #eb6f92;
-@define-color yellow #f6c177;
-@define-color cyan #ebbcba;
-@define-color green #31748f;
-@define-color blue #9ccfd8;
-@define-color magenta #c4a7e7;
 
-/* Moon Overlay */
-@define-color hover #393552;
-/* Moon HighlightMed */
-@define-color active #44415a;
+@define-color hover  rgba(38, 35, 58, 0.3);
+@define-color active rgba(38, 35, 58, 0.5);

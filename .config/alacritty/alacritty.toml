@@ -1,3 +1,7 @@
+general.import = [
+	"themes/rose-pine.toml"
+]
+
 [font]
 # Any NerdFontMono
 normal = { family = 'JetBrainsMonoNerdFontMono' }

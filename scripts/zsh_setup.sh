@@ -11,8 +11,10 @@ REQUIRED_PACKAGES=(
 
 require_packages
 
-# .zshrc
-curl -fsSL https://raw.githubusercontent.com/gsistelos/dotfiles/main/.zshrc -o ~/.zshrc
+DOTS="$(cd .. && pwd)"
+
+ln -s ${DOTS}/.p10k.zsh ${HOME}
+ln -s ${DOTS}/.zshrc ${HOME}
 
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended

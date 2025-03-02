@@ -1,14 +1,14 @@
-@import "./themes/rose-pine.css";
+@import "themes/rose-pine.css";
 
 * {
 	/* Any NerdFontPropo */
-	font-family: 'UbuntuNerdFontPropo';
-	font-size: 0.9rem;
+	font-family: "NotoSans", "Font Awesome 6 Free";
+	font-size:   0.9rem;
 	font-weight: 500;
 }
 
 window#waybar {
-	color: @foreground;
+	color:            @foreground;
 	background-color: @background;
 }
 
@@ -20,14 +20,14 @@ window#waybar {
 
 #workspaces button {
 	/* Remove defaults */
-	padding: 0;
-	border: none;
-	box-shadow: none;
-	text-shadow: none;
+	padding:       0;
+	border:        none;
+	box-shadow:    none;
+	text-shadow:   none;
 	border-radius: 0px;
 
-	color: @foreground;
-	min-width: 25px;
+	color:      @foreground;
+	min-width:  25px;
 	min-height: 25px;
 }
 

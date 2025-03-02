@@ -1,0 +1,10 @@
+* {
+    background:                  #191724aa;
+    foreground:                  #e0def4;
+    entry-color:                 #e0def4aa;
+    border-color:                #9ccfd8;
+    element-selected-background: #191724aa;
+    element-selected-color:      #9ccfd8;
+
+    color: @foreground;
+}

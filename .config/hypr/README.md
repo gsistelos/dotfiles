@@ -2,6 +2,13 @@
 
 ## Nvidia + Wayland
 
+### See
+
+- https://wiki.hyprland.org/Nvidia/#installation
+- https://wiki.hyprland.org/Nvidia/#installation
+
+### TL;DR
+
 ```sh
 pacman -S --needed nvidia
 ```
