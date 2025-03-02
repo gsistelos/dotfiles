@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+source ./colors.sh
+
+SUCCESS="[${GREEN}SUCCESS${NO_COLOR}]"
+INFO="[${BLUE}INFO${NO_COLOR}]"
+WARNING="[${YELLOW}WARNING${NO_COLOR}]"
+ERROR="[${RED}ERROR${NO_COLOR}]"
