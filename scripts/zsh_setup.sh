@@ -1,14 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-source utils.sh
+source ./utils.sh
 
 REQUIRED_PACKAGES=(
 	"zsh"
 	"git"
 	"curl"
+	"unzip"
 )
 
 require_packages
+
+# .zshrc
+curl -fsSL https://raw.githubusercontent.com/gsistelos/dotfiles/main/.zshrc -o ~/.zshrc
 
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -21,6 +25,3 @@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_C
 
 # p10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-
-# .zshrc
-curl -fsSL https://raw.githubusercontent.com/gsistelos/dotfiles/main/.zshrc -o ~/.zshrc

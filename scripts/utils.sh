@@ -2,9 +2,7 @@
 
 source ./labels.sh
 
-if [ ! -z $PKG_MANAGER ]; then
-	PKG_MANAGER="paru"
-fi
+PKG_MANAGER="paru"
 
 yn_question() {
 	echo -n "$1 [Y/n] "
