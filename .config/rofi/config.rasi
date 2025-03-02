@@ -1,4 +1,4 @@
-@import "themes/rose-pine.rasi"
+@import "themes/gruvbox.rasi"
 
 configuration {
     font:       "JetBrains Mono Nerd Font 12";

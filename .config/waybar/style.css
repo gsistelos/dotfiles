@@ -1,4 +1,4 @@
-@import "themes/rose-pine.css";
+@import "themes/gruvbox.css";
 
 * {
 	/* Any NerdFontPropo */
@@ -27,8 +27,8 @@ window#waybar {
 	border-radius: 0px;
 
 	color:      @foreground;
-	min-width:  25px;
-	min-height: 25px;
+	min-width:  28px;
+	min-height: 28px;
 }
 
 #workspaces button:hover {
