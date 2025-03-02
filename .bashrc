@@ -5,35 +5,40 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
+# Aliases
 alias ls="ls --color=auto"
+alias grep="grep --color=auto"
 
 alias ll="ls -l"
 alias la="ls -la"
 
-
+# Default apps
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="brave"
 
+# Colors
+NO_COLOR="\033[0m"
+BLACK="\033[0;30m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+PURPLE="\033[0;35m"
+CYAN="\033[0;36m"
+WHITE="\033[0;37m"
 
 # Prompt
-RESET="\[\e[0m\]"
-GREEN="\[\e[92m\]"
-BLUE="\[\e[94m\]"
-CYAN="\[\e[96m\]"
+DIR="${GREEN}\W${NONE}"
+PS1="${BLUE}[${NONE} ${DIR} ${BLUE}]\$${NONE} "
 
-DIR="${GREEN}\W${RESET}"
+# uv
+source $HOME/.local/bin/env
+# eval "$(uv generate-shell-completion bash)"
+# eval "$(uvx generate-shell-completion bash)"
 
-source $HOME/.git-prompt.sh
-GIT_COMMAND='$(__git_ps1 " %s")'
-GIT_PROMPT="${CYAN}${GIT_COMMAND}${RESET}"
-
-PS1="${BLUE}[${RESET} ${DIR}${GIT_PROMPT} ${BLUE}]\$${RESET} "
-
-
-# bash-completion
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-  source /usr/share/bash-completion/bash_completion
-
-
-export PATH="$HOME/.local/bin:$PATH"
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d $FNM_PATH ]; then
+	export PATH="$FNM_PATH:$PATH"
+	eval "$(fnm env)"
+fi
