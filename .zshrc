@@ -18,8 +18,9 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # uv
-source $HOME/.local/bin/env
 # eval "$(uv generate-shell-completion zsh)"
 # eval "$(uvx generate-shell-completion zsh)"
 

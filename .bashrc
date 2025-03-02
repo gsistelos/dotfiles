@@ -28,11 +28,12 @@ CYAN="\033[0;36m"
 WHITE="\033[0;37m"
 
 # Prompt
-DIR="${GREEN}\W${NONE}"
-PS1="${BLUE}[${NONE} ${DIR} ${BLUE}]\$${NONE} "
+DIR="${GREEN}\W${NO_COLOR}"
+PS1="${BLUE}[${NONE} ${DIR} ${BLUE}]\$${NO_COLOR} "
+
+export PATH="$HOME/.local/bin:$PATH"
 
 # uv
-source $HOME/.local/bin/env
 # eval "$(uv generate-shell-completion bash)"
 # eval "$(uvx generate-shell-completion bash)"
 
