@@ -1,51 +1,100 @@
 #!/usr/bin/env sh
 
-source ./labels.sh
-
-PKG_MANAGER="paru"
-
 yn_question() {
-	echo -n "$1 [Y/n] "
-	read -r ANSWER
+    printf "%s [Y/n] " "$1"
+    read -r ANSWER
 
-	case ${ANSWER} in
-		[yY] | [yY][eE][sS] | "")
-			return 0
-			;;
-		*)
-			return 1
-			;;
-	esac
+    case "$ANSWER" in
+        [yY] | [yY][eE][sS] | "")
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+require_pkg_manager() {
+    PKG_MANAGER=$1
+
+    printf "Checking if '%s' is installed...\n" "$PKG_MANAGER"
+    if command -v "$PKG_MANAGER" >/dev/null 2>&1; then
+        return 0
+    fi
+
+    if ! yn_question "'$PKG_MANAGER' is not installed. Would you like to install it?"; then
+        echo "Installation aborted by user."
+        return 1
+    fi
+
+    TEMP_DIR=$(mktemp -d "/tmp/${PKG_MANAGER}.XXXXXX")
+    if [ ! -d "$TEMP_DIR" ]; then
+        echo "Failed to create temporary directory."
+        return 1
+    fi
+
+    echo "Cloning '$PKG_MANAGER' into '$TEMP_DIR'..."
+    if ! git clone "https://aur.archlinux.org/${PKG_MANAGER}.git" "$TEMP_DIR"; then
+        echo "Failed to clone repository."
+        return 1
+    fi
+
+    if ! cd "$TEMP_DIR"; then
+        echo "Failed to enter directory '$TEMP_DIR'."
+        return 1
+    fi
+
+    if ! makepkg -si; then
+        echo "Failed to build and install package."
+        return 1
+    fi
+
+    return 0
 }
 
 require_packages() {
-	echo "Updating packages..."
-	${PKG_MANAGER} -Syu --noconfirm
+    REQUIRED_PACKAGES=$1
 
-	echo "Checking for required packages..."
-	MISSING_PACKAGES=()
+    echo "Updating packages..."
+    if ! "$PKG_MANAGER" -Syu --noconfirm; then
+        echo "Failed to update packages."
+        return 1
+    fi
 
-	for PACKAGE in "${REQUIRED_PACKAGES[@]}"; do
-		# Check if package exists
-		if [ -z "$(${PKG_MANAGER} -Ss ^${PACKAGE}$)" ]; then
-			echo -e "${WARNING}: Package '${PACKAGE}' does not exist. Skipping..."
-			continue
-		fi
+    echo "Checking for required packages..."
+    MISSING_PACKAGES=""
+    for PACKAGE in $REQUIRED_PACKAGES; do
+        # Check if package exists
+        if ! "$PKG_MANAGER" -Ss "^${PACKAGE}$" >/dev/null 2>&1; then
+            echo "Package '${PACKAGE}' does not exist."
+            return 1
+        fi
 
-		# Check if package is installed
-		if [ -z "$(${PKG_MANAGER} -Q ${PACKAGE})" ]; then
-			MISSING_PACKAGES+=(${PACKAGE})
-		fi
-	done
+        # Check if package is installed
+        if ! "$PKG_MANAGER" -Q "$PACKAGE" >/dev/null 2>&1; then
+            MISSING_PACKAGES="$MISSING_PACKAGES $PACKAGE"
+        fi
+    done
 
-	if [ ${MISSING_PACKAGES[0]} ]; then
-		echo "Missing packages:"
-		for PACKAGE in "${MISSING_PACKAGES[@]}"; do
-			echo "- ${PACKAGE}"
-		done
+    # Return if there are no missing packages
+    if [ -z "$MISSING_PACKAGES" ]; then
+        return 0
+    fi
 
-		if yn_question "Would you like to install these packages?"; then
-			${PKG_MANAGER} -S --needed --noconfirm ${MISSING_PACKAGES[@]}
-		fi
-	fi
+    echo "Missing packages:"
+    for PACKAGE in $MISSING_PACKAGES; do
+        echo "- $PACKAGE"
+    done
+
+    if ! yn_question "Would you like to install these packages?"; then
+        echo "Installation aborted by user."
+        return 1
+    fi
+
+    if ! "$PKG_MANAGER" -S --needed --noconfirm $MISSING_PACKAGES; then
+        echo "Failed to install missing packages."
+        return 1
+    fi
+
+    return 0
 }
