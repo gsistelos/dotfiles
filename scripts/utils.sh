@@ -98,3 +98,27 @@ require_packages() {
 
     return 0
 }
+
+bkp_files() {
+    BKP_PATHS=$1
+
+    echo "Backing up files..."
+
+    for TARGET_PATH in $BKP_PATHS; do
+        if [ ! -e "$TARGET_PATH" ]; then
+            continue
+        fi
+
+        TARGET_PATH_BASENAME=$(basename "$TARGET_PATH")
+
+        TEMP_DIR=$(mktemp -u "/tmp/${TARGET_PATH_BASENAME}.XXXXXX")
+
+        echo "Moving '$TARGET_PATH' to '$TEMP_DIR'"
+        if ! mv "$TARGET_PATH" "$TEMP_DIR"; then
+            echo "Failed to back up '$TARGET_PATH'"
+            return 1
+        fi
+    done
+
+    return 0
+}
