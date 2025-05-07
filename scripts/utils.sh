@@ -113,9 +113,33 @@ bkp_files() {
 
         TEMP_DIR=$(mktemp -u "/tmp/$TARGET_PATH_BASENAME.XXXXXX")
 
-        echo "Moving '$TARGET_PATH' to '$TEMP_DIR'"
+        echo "Moving '$TARGET_PATH' to '$TEMP_DIR'..."
         if ! mv "$TARGET_PATH" "$TEMP_DIR"; then
-            echo "Failed to back up '$TARGET_PATH'"
+            echo "Failed to back up '$TARGET_PATH'."
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+link_dots() {
+    LINK_PATHS=$1
+
+    echo "Linking files..."
+
+    DOTS_DIR=$(cd .. && pwd)
+
+    for TARGET_PATH in $LINK_PATHS; do
+        LINK="$DOTS_DIR/$(basename "$TARGET_PATH")"
+        if [ ! -e "$LINK" ]; then
+            echo "File '$LINK' does not exit."
+            return 1
+        fi
+
+        echo "Linking '$TARGET_PATH' to '$LINK'..."
+        if ! ln -s "$LINK" "$TARGET_PATH"; then
+            echo "Failed to create link for '$TARGET_PATH'."
             return 1
         fi
     done
