@@ -27,14 +27,14 @@ require_pkg_manager() {
         return 1
     fi
 
-    TEMP_DIR=$(mktemp -d "/tmp/${PKG_MANAGER}.XXXXXX")
+    TEMP_DIR=$(mktemp -d "/tmp/$PKG_MANAGER.XXXXXX")
     if [ ! -d "$TEMP_DIR" ]; then
         echo "Failed to create temporary directory."
         return 1
     fi
 
     echo "Cloning '$PKG_MANAGER' into '$TEMP_DIR'..."
-    if ! git clone "https://aur.archlinux.org/${PKG_MANAGER}.git" "$TEMP_DIR"; then
+    if ! git clone "https://aur.archlinux.org/$PKG_MANAGER.git" "$TEMP_DIR"; then
         echo "Failed to clone repository."
         return 1
     fi
@@ -65,8 +65,8 @@ require_packages() {
     MISSING_PACKAGES=""
     for PACKAGE in $REQUIRED_PACKAGES; do
         # Check if package exists
-        if ! "$PKG_MANAGER" -Ss "^${PACKAGE}$" >/dev/null 2>&1; then
-            echo "Package '${PACKAGE}' does not exist."
+        if ! "$PKG_MANAGER" -Ss "^$PACKAGE$" >/dev/null 2>&1; then
+            echo "Package '$PACKAGE' does not exist."
             return 1
         fi
 
@@ -111,7 +111,7 @@ bkp_files() {
 
         TARGET_PATH_BASENAME=$(basename "$TARGET_PATH")
 
-        TEMP_DIR=$(mktemp -u "/tmp/${TARGET_PATH_BASENAME}.XXXXXX")
+        TEMP_DIR=$(mktemp -u "/tmp/$TARGET_PATH_BASENAME.XXXXXX")
 
         echo "Moving '$TARGET_PATH' to '$TEMP_DIR'"
         if ! mv "$TARGET_PATH" "$TEMP_DIR"; then
