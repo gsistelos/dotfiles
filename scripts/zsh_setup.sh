@@ -2,19 +2,8 @@
 
 source ./utils.sh
 
-REQUIRED_PACKAGES=(
-	"zsh"
-	"git"
-	"curl"
-	"unzip"
-)
-
-require_packages
-
-DOTS="$(cd .. && pwd)"
-
-ln -s ${DOTS}/.p10k.zsh ${HOME}
-ln -s ${DOTS}/.zshrc ${HOME}
+require_pkg_manager
+require_packages "curl git unzip zsh"
 
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -27,3 +16,8 @@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_C
 
 # p10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+FILES="$HOME/.zshrc $HOME/.p10k.zsh"
+
+bkp_files "$FILES"
+link_dots "$FILES"

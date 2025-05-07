@@ -2,13 +2,10 @@
 
 source ./utils.sh
 
-REQUIRED_PACKAGES=(
-	"tmux"
-	"curl"
-)
+require_pkg_manager
+require_packages "curl tmux"
 
-require_packages
+FILES="$HOME/.tmux.conf"
 
-DOTS="$(cd .. && pwd)"
-
-ln -s ${DOTS}/.tmux.conf ${HOME}
+bkp_files "$FILES"
+link_dots "$FILES"

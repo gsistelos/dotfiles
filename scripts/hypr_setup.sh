@@ -2,43 +2,12 @@
 
 source ./utils.sh
 
-REQUIRED_PACKAGES=(
-	greetd-regreet
+require_pkg_manager
+require_packages "greetd-regreet uwsm hyprland hyprpaper xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland dunst noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra waybar ttf-ubuntu-nerd rofi alacritty ttf-jetbrains-mono-nerd"
 
-	uwsm
+FILES="$HOME/.config/hypr $HOME/.config/waybar $HOME/.config/rofi $HOME/.config/alacritty $HOME/.wallpapers"
 
-	hyprland
-	hyprpaper
-	xdg-desktop-portal-hyprland
-	hyprpolkitagent
-	qt5-wayland
-	dunst
-	noto-fonts
-	noto-fonts-cjk
-	noto-fonts-emoji
-	noto-fonts-extra
-
-	waybar
-	ttf-ubuntu-nerd
-
-	rofi
-
-	alacritty
-	ttf-jetbrains-mono-nerd
-)
-
-require_packages
-
-DOTS_CONFIG="$(cd .. && pwd)/.config"
-USER_CONFIG="${HOME}/.config"
-
-ln -s ${DOTS_CONFIG}/hypr      ${USER_CONFIG}
-ln -s ${DOTS_CONFIG}/waybar    ${USER_CONFIG}
-ln -s ${DOTS_CONFIG}/rofi      ${USER_CONFIG}
-ln -s ${DOTS_CONFIG}/alacritty ${USER_CONFIG}
-
-DOTS="$(cd .. && pwd)"
-
-ln -s ${DOTS}/.wallpapers ${HOME}
+bkp_files "$FILES"
+link_dots "$FILES"
 
 systemctl --user enable --now hyprpolkitagent.service

@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+PKG_MANAGER="yay"
+
 yn_question() {
     printf "%s [Y/n] " "$1"
     read -r ANSWER
@@ -15,8 +17,6 @@ yn_question() {
 }
 
 require_pkg_manager() {
-    PKG_MANAGER=$1
-
     printf "Checking if '%s' is installed...\n" "$PKG_MANAGER"
     if command -v "$PKG_MANAGER" >/dev/null 2>&1; then
         return 0
