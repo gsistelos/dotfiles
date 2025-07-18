@@ -1,8 +1,11 @@
 # dotfiles
 
+Clone the repository in the home directory:
+
 ```sh
-git clone --depth 1 https://github.com/gsistelos/dotfiles
-cd dotfiles/scripts
+git clone https://github.com/gsistelos/dotfiles.git ~/
 ```
 
-Then run the setup scripts.
+Install [stow](https://www.gnu.org/software/stow/).
+
+Run `stow .` to create symlinks for this dotfiles.

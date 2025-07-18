@@ -1,7 +1,0 @@
-@define-color background rgba(40, 40, 40, 0.3);
-@define-color foreground #ebdbb2;
-
-@define-color red #cc241d;
-
-@define-color hover  rgba(146, 131, 116, 0.3);
-@define-color active rgba(146, 131, 116, 0.5);
