@@ -10,6 +10,9 @@ export EDITOR="nvim"
 # fnm: Fast and simple Node.js version manager.
 eval "$(fnm env)"
 
+# Cargo
+source "$HOME/.cargo/env"
+
 # Zoxide: A smarter `cd` command.
 eval "$(zoxide init bash)"
 

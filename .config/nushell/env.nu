@@ -2,10 +2,9 @@
 
 # Append paths to $env.PATH.
 const paths = [
-    $nu.home-path | path join ".cargo/bin",
-    $nu.home-path | path join ".go/bin",
-    $nu.home-path | path join ".local/bin",
-    $nu.home-path | path join ".local/share/fnm",
+    ($nu.home-path | path join ".go/bin"),
+    ($nu.home-path | path join ".local/bin"),
+    ($nu.home-path | path join ".local/share/fnm"),
 ]
 
 for path in $paths {
