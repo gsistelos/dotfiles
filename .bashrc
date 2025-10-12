@@ -27,7 +27,7 @@ fi
 NVIM_BIN="$BINARIES/nvim"
 NVIM_APP_IMAGE_URI="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage"
 
-if [[ ! -f $NVIM_BIN ]]; then
+if ! which nvim > /dev/null; then
 	not_found_installing_message "$NVIM_BIN"
 	curl -fsSL "$NVIM_APP_IMAGE_URI" -o "$NVIM_BIN" && chmod u+x "$NVIM_BIN"
 fi
@@ -89,18 +89,40 @@ source <(fnm env --use-on-cd --shell bash)
 UV_BIN="$BINARIES/uv"
 UV_INSTALLER_URI="https://astral.sh/uv/install.sh"
 
-if [[ ! -f $UV_BIN ]]; then
+if ! which uv > /dev/null; then
 	not_found_installing_message "$UV_BIN"
 	curl -fsSL "$UV_INSTALLER_URI" | sh
 fi
+
+# source <(uv generate-shell-completion bash)
+# source <(uvx generate-shell-completion bash)
 
 # Setup `oh-my-posh` if not found
 OH_MY_POSH_BIN="$BINARIES/oh-my-posh"
 OH_MY_POSH_INSTALLER_URI="https://ohmyposh.dev/install.sh"
 
-if [[ ! -f $OH_MY_POSH_BIN ]]; then
+if ! which oh-my-posh > /dev/null; then
 	not_found_installing_message "$OH_MY_POSH_BIN"
 	curl -s "$OH_MY_POSH_INSTALLER_URI" | bash -s
 fi
 
 source <(oh-my-posh init bash)
+
+# Setup `eza` if not found
+if ! which eza > /dev/null; then
+	sudo apt install -y eza
+fi
+
+alias ls=eza
+
+# Setup `bat` if not found
+if ! which batcat > /dev/null; then
+	sudo apt install -y bat
+fi
+
+# Setup `zoxide` if not found
+if ! which zoxide > /dev/null; then
+	sudo apt install -y zoxide
+fi
+
+source <(zoxide init bash)
