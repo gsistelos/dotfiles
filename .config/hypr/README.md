@@ -1,20 +1,6 @@
-# dotfiles
+# Hyprland
 
 ## Required packages
-
-**Required for CLI**:
-
-```sh
-sudo pacman -S --needed \
-    git \
-    make \
-    unzip \
-    bash \
-    zsh \
-    tmux
-```
-
-**Required for desktop**:
 
 ```sh
 sudo pacman -S --needed \
@@ -39,11 +25,15 @@ sudo pacman -S --needed \
     wl-clipboard
 ```
 
-## Usage
+## Applications theme
 
 ```sh
-git clone --depth 1 https://github.com/gsistelos/dotfiles
-make # to create symbolic links for all configuration files
-make ~/.bashrc # to create a symbolic link for `.bashrc`
-make ~/.config/hypr # to create a symbolic link for `.config/hypr`
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"
 ```
+
+## Nvidia + Wayland
+
+### See
+
+- https://wiki.hyprland.org/Nvidia/#installation
