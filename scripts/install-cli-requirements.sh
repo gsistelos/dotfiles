@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-pacman -S --needed \
+sudo pacman -S --needed \
 	git \
 	less \
 	make \
@@ -8,3 +8,7 @@ pacman -S --needed \
 	bash \
 	zsh \
 	tmux
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+curl -fsSL https://fnm.vercel.app/install | bash
