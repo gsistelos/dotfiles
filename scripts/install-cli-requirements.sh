@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-sudo pacman -S --needed \
+sudo pacman -S --needed --noconfirm \
 	git \
 	less \
 	make \
