@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-pacman -S --needed \
+sudo pacman -S --needed \
 	hyprland \
 	foot \
 	ttf-meslo-nerd \
