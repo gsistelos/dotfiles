@@ -5,40 +5,13 @@
 **Required for CLI**:
 
 ```sh
-sudo pacman -S --needed \
-    git \
-    less \
-    make \
-    unzip \
-    bash \
-    zsh \
-    tmux
+sudo ./scripts/install-cli-requirements.sh
 ```
 
 **Required for desktop**:
 
 ```sh
-sudo pacman -S --needed \
-    hyprland \
-    foot \
-    ttf-meslo-nerd \
-    ttf-font-awesome \
-    noto-fonts \
-    noto-fonts-cjk \
-    noto-fonts-emoji \
-    noto-fonts-extra \
-    xdg-desktop-portal-hyprland \
-    xdg-desktop-portal-gtk \
-    qt5-wayland \
-    qt6-wayland \
-    qt5ct \
-    qt6ct \
-    adw-gtk-theme \
-    hyprlauncher \
-    hyprpaper \
-    grim \
-    slurp \
-    wl-clipboard
+sudo ./scripts/install-desktop-requirements.sh
 ```
 
 ## Dark theme:
