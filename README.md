@@ -5,13 +5,13 @@
 **Required for CLI**:
 
 ```sh
-sudo ./scripts/install-cli-requirements.sh
+./scripts/install-cli-requirements.sh
 ```
 
 **Required for desktop**:
 
 ```sh
-sudo ./scripts/install-desktop-requirements.sh
+./scripts/install-desktop-requirements.sh
 ```
 
 ## Dark theme:
