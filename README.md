@@ -7,6 +7,7 @@
 ```sh
 sudo pacman -S --needed \
     git \
+    less \
     make \
     unzip \
     bash \
@@ -32,11 +33,19 @@ sudo pacman -S --needed \
     qt6-wayland \
     qt5ct \
     qt6ct \
+    adw-gtk-theme \
     hyprlauncher \
     hyprpaper \
     grim \
     slurp \
     wl-clipboard
+```
+
+**Dark theme**:
+
+```sh
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark # for GTK4 apps
+gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" # for GTK3 apps
 ```
 
 ## Usage

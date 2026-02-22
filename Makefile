@@ -8,7 +8,10 @@ TMUX = $(HOME)/.tmux.conf
 HYPR = $(CONFIG_DIR)/hypr
 FOOT = $(CONFIG_DIR)/foot
 
-$(HOME)/%: $(DOTFILES)/%
+$(CONFIG_DIR):
+	mkdir -p $(CONFIG_DIR)
+
+$(HOME)/%: $(DOTFILES)/% $(CONFIG_DIR)
 	if [ -e "$@" ]; then mv "$@" "/tmp/$(notdir $@)"; fi
 	ln -s "$<" "$@"
 

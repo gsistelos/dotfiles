@@ -26,3 +26,12 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(oh-my-posh init zsh)"
 
 source $ZSH/oh-my-zsh.sh
+
+# Tools
+eval "$(uv generate-shell-completion zsh)"
+
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+	export PATH="$FNM_PATH:$PATH"
+	eval "`fnm env`"
+fi
