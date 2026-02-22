@@ -17,7 +17,7 @@
 ## Dark theme:
 
 ```sh
-gsettings set org.gnome.desktop.interface color-scheme "prefer-dark # for GTK4 apps
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" # for GTK4 apps
 gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" # for GTK3 apps
 ```
 
