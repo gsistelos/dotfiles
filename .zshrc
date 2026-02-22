@@ -5,6 +5,10 @@ if [ ! -e "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}" ]; then
 	git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 
 	curl -s https://ohmyposh.dev/install.sh | bash -s
+
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+
+	curl -fsSL https://fnm.vercel.app/install | bash
 fi
 
 export ZSH="$HOME/.oh-my-zsh"

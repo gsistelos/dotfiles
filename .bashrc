@@ -26,12 +26,3 @@ PS1="$BLUE[$NO_COLOR $DIR $BLUE]\$$NO_COLOR "
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
-
-# Tools
-eval "$(uv generate-shell-completion bash)"
-
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-	export PATH="$FNM_PATH:$PATH"
-	eval "`fnm env`"
-fi
