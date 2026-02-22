@@ -41,7 +41,7 @@ sudo pacman -S --needed \
     wl-clipboard
 ```
 
-**Dark theme**:
+## Dark theme:
 
 ```sh
 gsettings set org.gnome.desktop.interface color-scheme "prefer-dark # for GTK4 apps
