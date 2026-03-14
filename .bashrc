@@ -7,7 +7,7 @@ alias grep="grep --color=auto"
 
 # Default apps
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="brave"
 
 # Colors
 NO_COLOR="\033[0m"

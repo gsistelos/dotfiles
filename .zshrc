@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Default apps
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="brave"
 
 plugins=(
 	git
