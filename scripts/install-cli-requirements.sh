@@ -13,10 +13,12 @@ ERROR="[${RED}ERROR${RESET}]"
 
 
 yn_question() {
-	echo -n "$1 [Y/n] "
-	read -r ANSWER
+	local question="$1"
 
-	case $ANSWER in
+	printf "%s [Y/n] " "${question}"
+	read -r answer
+
+	case ${answer} in
 		[yY] | [yY][eE][sS] | "")
 			return 0
 			;;
@@ -57,23 +59,52 @@ check_distro() {
 
 
 install_packages() {
+	local update_packages
+	local install_packages
+
 	if [ ${DISTRO} = "Arch" ]; then
-		UPDATE_PACKAGES="sudo pacman -Syu --noconfirm"
-		INSTALL_PACKAGES="sudo pacman -S --needed --noconfirm git less curl unzip make bash zsh tmux"
+		update_packages="sudo pacman -Syu --noconfirm"
+		install_packages="sudo pacman -S --needed --noconfirm git less curl unzip make bash zsh tmux"
 	elif [ "$DISTRO" = "Ubuntu" ] || [ "$DISTRO" = "Debian" ]; then
-		UPDATE_PACKAGES="sudo apt update && sudo apt upgrade -y"
-		INSTALL_PACKAGES="sudo apt install -y git less curl unzip make bash zsh tmux"
+		update_packages="sudo apt update && sudo apt upgrade -y"
+		install_packages="sudo apt install -y git less curl unzip make bash zsh tmux"
 	fi
 
 	echo "${INFO} Updating packages..."
-	if ! eval "${UPDATE_PACKAGES}"; then
+	if ! eval "${update_packages}"; then
 		echo "${ERROR} Failed to update packages"
 		exit 1
 	fi
 
 	echo "${INFO} Installing packages..."
-	if ! eval "${INSTALL_PACKAGES}"; then
+	if ! eval "${install_packages}"; then
 		echo "${ERROR} Failed to install packages"
+		exit 1
+	fi
+}
+
+
+install_zsh_plugins() {
+	echo "${INFO} Installing zsh plugins..."
+
+    ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+	if ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc; then
+		echo "${ERROR} Failed to install oh-my-zsh"
+		exit 1
+	fi
+
+	if ! git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"; then
+		echo "${ERROR} Failed to install zsh-autosuggestions"
+		exit 1
+	fi
+
+	if ! git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"; then
+		echo "${ERROR} Failed to install zsh-syntax-highlighting"
+		exit 1
+	fi
+
+	if ! curl -s https://ohmyposh.dev/install.sh | bash -s; then
+		echo "${ERROR} Failed to install oh-my-posh"
 		exit 1
 	fi
 }
@@ -133,6 +164,7 @@ install_golang() {
 
 check_distro
 install_packages
+install_zsh_plugins
 install_uv
 install_fnm
 install_rustup
