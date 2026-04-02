@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 RED="\033[1;31m"
 GREEN="\033[1;32m"
@@ -38,16 +40,18 @@ check_distro() {
 	local distros="Arch Ubuntu Debian"
 
 	for distro in ${distros}; do
-		local lowercase_distro=$(echo ${distro} | tr "A-Z" "a-z")
+		local lowercase_distro
+		lowercase_distro="$(echo "${distro}" | tr "A-Z" "a-z")"
 
-		if grep -q "ID=${lowercase_distro}" /etc/os-release; then
-			DISTRO=${distro}
+		if grep -q "^ID=${lowercase_distro}$" /etc/os-release; then
+			DISTRO="${distro}"
 			echo "${INFO} Running script for ${distro} distro..."
 		fi
 	done
 
-	if [ -z ${DISTRO} ]; then
-	    local distros_str=$(echo "$distros" | sed -E 's/ /, /g; s/, ([^,]*)$/ and \1/')
+	if [ -z "${DISTRO:-}" ]; then
+		local distros_str
+		distros_str="$(echo "$distros" | sed -E 's/ /, /g; s/, ([^,]*)$/ and \1/')"
 		echo "${ERROR} This script only supports ${distros_str} distros"
 		exit 1
 	fi
@@ -62,7 +66,7 @@ install_packages() {
 	local update_packages
 	local install_packages
 
-	if [ ${DISTRO} = "Arch" ]; then
+	if [ "${DISTRO}" = "Arch" ]; then
 		update_packages="sudo pacman -Syu --noconfirm"
 		install_packages="sudo pacman -S --needed --noconfirm git less curl unzip make bash zsh tmux"
 	elif [ "$DISTRO" = "Ubuntu" ] || [ "$DISTRO" = "Debian" ]; then
@@ -140,7 +144,7 @@ install_rustup() {
 install_golang() {
 	echo "${INFO} Installing golang..."
 
-	if [ ${DISTRO} = "Arch" ]; then
+	if [ "${DISTRO}" = "Arch" ]; then
 		if ! sudo pacman -S --needed --noconfirm golang; then
 			echo "${ERROR} Failed to install golang"
 			exit 1
