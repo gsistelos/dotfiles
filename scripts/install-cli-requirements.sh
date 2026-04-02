@@ -91,53 +91,110 @@ install_packages() {
 install_zsh_plugins() {
 	echo "${INFO} Installing zsh plugins..."
 
-    ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
-	if ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc; then
-		echo "${ERROR} Failed to install oh-my-zsh"
-		exit 1
+	ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+	if [ ! -d "$HOME/.oh-my-zsh" ]; then
+		local install_script
+		install_script="$(mktemp)"
+		if ! curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o "${install_script}"; then
+			echo "${ERROR} Failed to download oh-my-zsh installer"
+			rm -f "${install_script}"
+			exit 1
+		fi
+
+		if ! sh "${install_script}" --unattended --keep-zshrc; then
+			echo "${ERROR} Failed to install oh-my-zsh"
+			rm -f "${install_script}"
+			exit 1
+		fi
+		rm -f "${install_script}"
+	else
+		echo "${INFO} oh-my-zsh already installed, skipping..."
 	fi
 
-	if ! git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"; then
+	if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && ! git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"; then
 		echo "${ERROR} Failed to install zsh-autosuggestions"
 		exit 1
 	fi
 
-	if ! git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"; then
+	if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && ! git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"; then
 		echo "${ERROR} Failed to install zsh-syntax-highlighting"
 		exit 1
 	fi
 
-	if ! curl -s https://ohmyposh.dev/install.sh | bash -s; then
-		echo "${ERROR} Failed to install oh-my-posh"
+	local omp_install_script
+	omp_install_script="$(mktemp)"
+	if ! curl -fsSL https://ohmyposh.dev/install.sh -o "${omp_install_script}"; then
+		echo "${ERROR} Failed to download oh-my-posh installer"
+		rm -f "${omp_install_script}"
 		exit 1
 	fi
+
+	if ! bash "${omp_install_script}"; then
+		echo "${ERROR} Failed to install oh-my-posh"
+		rm -f "${omp_install_script}"
+		exit 1
+	fi
+	rm -f "${omp_install_script}"
 }
 
 
 install_uv() {
 	echo "${INFO} Installing uv..."
-	if ! curl -LsSf https://astral.sh/uv/install.sh | sh; then
-		echo "${ERROR} Failed to install uv"
+
+	local uv_install_script
+	uv_install_script="$(mktemp)"
+	if ! curl -LsSf https://astral.sh/uv/install.sh -o "${uv_install_script}"; then
+		echo "${ERROR} Failed to download uv installer"
+		rm -f "${uv_install_script}"
 		exit 1
 	fi
+
+	if ! sh "${uv_install_script}"; then
+		echo "${ERROR} Failed to install uv"
+		rm -f "${uv_install_script}"
+		exit 1
+	fi
+	rm -f "${uv_install_script}"
 }
 
 
 install_fnm() {
 	echo "${INFO} Installing fnm..."
-	if ! curl -fsSL https://fnm.vercel.app/install | bash; then
-		echo "${ERROR} Failed to install fnm"
+
+	local fnm_install_script
+	fnm_install_script="$(mktemp)"
+	if ! curl -fsSL https://fnm.vercel.app/install -o "${fnm_install_script}"; then
+		echo "${ERROR} Failed to download fnm installer"
+		rm -f "${fnm_install_script}"
 		exit 1
 	fi
+
+	if ! bash "${fnm_install_script}"; then
+		echo "${ERROR} Failed to install fnm"
+		rm -f "${fnm_install_script}"
+		exit 1
+	fi
+	rm -f "${fnm_install_script}"
 }
 
 
 install_rustup() {
 	echo "${INFO} Installing rustup..."
-	if ! curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y; then
-		echo "${ERROR} Failed to install rustup"
+
+	local rustup_install_script
+	rustup_install_script="$(mktemp)"
+	if ! curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o "${rustup_install_script}"; then
+		echo "${ERROR} Failed to download rustup installer"
+		rm -f "${rustup_install_script}"
 		exit 1
 	fi
+
+	if ! sh "${rustup_install_script}" -y; then
+		echo "${ERROR} Failed to install rustup"
+		rm -f "${rustup_install_script}"
+		exit 1
+	fi
+	rm -f "${rustup_install_script}"
 }
 
 
