@@ -88,25 +88,52 @@ install_packages() {
 }
 
 
+download_installer_script() {
+	local script_name="$1"
+	local script_url="$2"
+	shift 2
+
+	local install_script
+	install_script="$(mktemp)"
+	if ! curl "$@" "${script_url}" -o "${install_script}"; then
+		echo "${ERROR} Failed to download ${script_name}"
+		rm -f "${install_script}"
+		return 1
+	fi
+
+	printf "%s\n" "${install_script}"
+}
+
+
+run_installer_script() {
+	local installer_name="$1"
+	local script_runner="$2"
+	local script_path="$3"
+	shift 3
+
+	if ! "${script_runner}" "${script_path}" "$@"; then
+		echo "${ERROR} Failed to install ${installer_name}"
+		rm -f "${script_path}"
+		return 1
+	fi
+
+	rm -f "${script_path}"
+}
+
+
 install_zsh_plugins() {
 	echo "${INFO} Installing zsh plugins..."
 
 	ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 	if [ ! -d "$HOME/.oh-my-zsh" ]; then
 		local install_script
-		install_script="$(mktemp)"
-		if ! curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o "${install_script}"; then
-			echo "${ERROR} Failed to download oh-my-zsh installer"
-			rm -f "${install_script}"
+		if ! install_script="$(download_installer_script "oh-my-zsh installer" "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" -fsSL)"; then
 			exit 1
 		fi
 
-		if ! sh "${install_script}" --unattended --keep-zshrc; then
-			echo "${ERROR} Failed to install oh-my-zsh"
-			rm -f "${install_script}"
+		if ! run_installer_script "oh-my-zsh" sh "${install_script}" --unattended --keep-zshrc; then
 			exit 1
 		fi
-		rm -f "${install_script}"
 	else
 		echo "${INFO} oh-my-zsh already installed, skipping..."
 	fi
@@ -122,19 +149,13 @@ install_zsh_plugins() {
 	fi
 
 	local omp_install_script
-	omp_install_script="$(mktemp)"
-	if ! curl -fsSL https://ohmyposh.dev/install.sh -o "${omp_install_script}"; then
-		echo "${ERROR} Failed to download oh-my-posh installer"
-		rm -f "${omp_install_script}"
+	if ! omp_install_script="$(download_installer_script "oh-my-posh installer" "https://ohmyposh.dev/install.sh" -fsSL)"; then
 		exit 1
 	fi
 
-	if ! bash "${omp_install_script}"; then
-		echo "${ERROR} Failed to install oh-my-posh"
-		rm -f "${omp_install_script}"
+	if ! run_installer_script "oh-my-posh" bash "${omp_install_script}"; then
 		exit 1
 	fi
-	rm -f "${omp_install_script}"
 }
 
 
@@ -142,19 +163,13 @@ install_uv() {
 	echo "${INFO} Installing uv..."
 
 	local uv_install_script
-	uv_install_script="$(mktemp)"
-	if ! curl -LsSf https://astral.sh/uv/install.sh -o "${uv_install_script}"; then
-		echo "${ERROR} Failed to download uv installer"
-		rm -f "${uv_install_script}"
+	if ! uv_install_script="$(download_installer_script "uv installer" "https://astral.sh/uv/install.sh" -LsSf)"; then
 		exit 1
 	fi
 
-	if ! sh "${uv_install_script}"; then
-		echo "${ERROR} Failed to install uv"
-		rm -f "${uv_install_script}"
+	if ! run_installer_script "uv" sh "${uv_install_script}"; then
 		exit 1
 	fi
-	rm -f "${uv_install_script}"
 }
 
 
@@ -162,19 +177,13 @@ install_fnm() {
 	echo "${INFO} Installing fnm..."
 
 	local fnm_install_script
-	fnm_install_script="$(mktemp)"
-	if ! curl -fsSL https://fnm.vercel.app/install -o "${fnm_install_script}"; then
-		echo "${ERROR} Failed to download fnm installer"
-		rm -f "${fnm_install_script}"
+	if ! fnm_install_script="$(download_installer_script "fnm installer" "https://fnm.vercel.app/install" -fsSL)"; then
 		exit 1
 	fi
 
-	if ! bash "${fnm_install_script}"; then
-		echo "${ERROR} Failed to install fnm"
-		rm -f "${fnm_install_script}"
+	if ! run_installer_script "fnm" bash "${fnm_install_script}"; then
 		exit 1
 	fi
-	rm -f "${fnm_install_script}"
 }
 
 
@@ -182,19 +191,13 @@ install_rustup() {
 	echo "${INFO} Installing rustup..."
 
 	local rustup_install_script
-	rustup_install_script="$(mktemp)"
-	if ! curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o "${rustup_install_script}"; then
-		echo "${ERROR} Failed to download rustup installer"
-		rm -f "${rustup_install_script}"
+	if ! rustup_install_script="$(download_installer_script "rustup installer" "https://sh.rustup.rs" --proto '=https' --tlsv1.2 -sSf)"; then
 		exit 1
 	fi
 
-	if ! sh "${rustup_install_script}" -y; then
-		echo "${ERROR} Failed to install rustup"
-		rm -f "${rustup_install_script}"
+	if ! run_installer_script "rustup" sh "${rustup_install_script}" -y; then
 		exit 1
 	fi
-	rm -f "${rustup_install_script}"
 }
 
 
