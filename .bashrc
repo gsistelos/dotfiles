@@ -21,10 +21,11 @@ CYAN="\033[0;36m"
 WHITE="\033[0;37m"
 
 # Prompt
-DIR="$GREEN\w$NO_COLOR"
-PS1="$BLUE[$NO_COLOR $DIR $BLUE]\$$NO_COLOR "
 if command -v oh-my-posh >/dev/null 2>&1; then
 	eval "$(oh-my-posh init bash)"
+else
+	DIR="$GREEN\w$NO_COLOR"
+	PS1="$BLUE[$NO_COLOR $DIR $BLUE]\$$NO_COLOR "
 fi
 
 # Path
