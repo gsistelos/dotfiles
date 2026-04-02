@@ -23,17 +23,25 @@ WHITE="\033[0;37m"
 # Prompt
 DIR="$GREEN\w$NO_COLOR"
 PS1="$BLUE[$NO_COLOR $DIR $BLUE]\$$NO_COLOR "
+if command -v oh-my-posh >/dev/null 2>&1; then
+	eval "$(oh-my-posh init bash)"
+fi
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
 
 # Tools
-eval "$(uv generate-shell-completion bash)"
+if command -v uv >/dev/null 2>&1; then
+	eval "$(uv generate-shell-completion bash)"
+fi
 
 FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
 	export PATH="$FNM_PATH:$PATH"
-	eval "`fnm env`"
+fi
+
+if command -v fnm >/dev/null 2>&1; then
+	eval "$(fnm env)"
 fi
 
 GO_PATH="/usr/local/go/bin"
@@ -41,4 +49,6 @@ if [ -d "$GO_PATH" ]; then
 	export PATH="$GO_PATH:$PATH"
 fi
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi

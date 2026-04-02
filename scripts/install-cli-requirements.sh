@@ -88,52 +88,25 @@ install_packages() {
 }
 
 
-download_installer_script() {
-	local script_name="$1"
-	local script_url="$2"
-	shift 2
-
-	local install_script
-	install_script="$(mktemp)"
-	if ! curl "$@" "${script_url}" -o "${install_script}"; then
-		echo "${ERROR} Failed to download ${script_name}"
-		rm -f "${install_script}"
-		return 1
-	fi
-
-	printf "%s\n" "${install_script}"
-}
-
-
-run_installer_script() {
-	local installer_name="$1"
-	local script_runner="$2"
-	local script_path="$3"
-	shift 3
-
-	if ! "${script_runner}" "${script_path}" "$@"; then
-		echo "${ERROR} Failed to install ${installer_name}"
-		rm -f "${script_path}"
-		return 1
-	fi
-
-	rm -f "${script_path}"
-}
-
-
 install_zsh_plugins() {
 	echo "${INFO} Installing zsh plugins..."
 
 	ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 	if [ ! -d "$HOME/.oh-my-zsh" ]; then
 		local install_script
-		if ! install_script="$(download_installer_script "oh-my-zsh installer" "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" -fsSL)"; then
+		install_script="$(mktemp)"
+		if ! curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o "${install_script}"; then
+			echo "${ERROR} Failed to download oh-my-zsh installer"
+			rm -f "${install_script}"
 			exit 1
 		fi
 
-		if ! run_installer_script "oh-my-zsh" sh "${install_script}" --unattended --keep-zshrc; then
+		if ! sh "${install_script}" --unattended --keep-zshrc; then
+			echo "${ERROR} Failed to install oh-my-zsh"
+			rm -f "${install_script}"
 			exit 1
 		fi
+		rm -f "${install_script}"
 	else
 		echo "${INFO} oh-my-zsh already installed, skipping..."
 	fi
@@ -147,89 +120,9 @@ install_zsh_plugins() {
 		echo "${ERROR} Failed to install zsh-syntax-highlighting"
 		exit 1
 	fi
-
-	local omp_install_script
-	if ! omp_install_script="$(download_installer_script "oh-my-posh installer" "https://ohmyposh.dev/install.sh" -fsSL)"; then
-		exit 1
-	fi
-
-	if ! run_installer_script "oh-my-posh" bash "${omp_install_script}"; then
-		exit 1
-	fi
-}
-
-
-install_uv() {
-	echo "${INFO} Installing uv..."
-
-	local uv_install_script
-	if ! uv_install_script="$(download_installer_script "uv installer" "https://astral.sh/uv/install.sh" -LsSf)"; then
-		exit 1
-	fi
-
-	if ! run_installer_script "uv" sh "${uv_install_script}"; then
-		exit 1
-	fi
-}
-
-
-install_fnm() {
-	echo "${INFO} Installing fnm..."
-
-	local fnm_install_script
-	if ! fnm_install_script="$(download_installer_script "fnm installer" "https://fnm.vercel.app/install" -fsSL)"; then
-		exit 1
-	fi
-
-	if ! run_installer_script "fnm" bash "${fnm_install_script}"; then
-		exit 1
-	fi
-}
-
-
-install_rustup() {
-	echo "${INFO} Installing rustup..."
-
-	local rustup_install_script
-	if ! rustup_install_script="$(download_installer_script "rustup installer" "https://sh.rustup.rs" --proto '=https' --tlsv1.2 -sSf)"; then
-		exit 1
-	fi
-
-	if ! run_installer_script "rustup" sh "${rustup_install_script}" -y; then
-		exit 1
-	fi
-}
-
-
-install_golang() {
-	echo "${INFO} Installing golang..."
-
-	if [ "${DISTRO}" = "Arch" ]; then
-		if ! sudo pacman -S --needed --noconfirm golang; then
-			echo "${ERROR} Failed to install golang"
-			exit 1
-		fi
-	elif [ "$DISTRO" = "Ubuntu" ] || [ "$DISTRO" = "Debian" ]; then
-		local tar_gz="go1.26.1.linux-amd64.tar.gz"
-
-		echo "${INFO} Installing golang..."
-		if ! curl -fL https://go.dev/dl/${tar_gz} -o /tmp/${tar_gz}; then
-			echo "${ERROR} Failed to curl ${tar_gz}"
-			exit 1
-		fi
-
-		if ! sudo tar -C /usr/local -xzf /tmp/${tar_gz}; then
-			echo "${ERROR} Failed to extract ${tar_gz}"
-			exit 1
-		fi
-	fi
 }
 
 
 check_distro
 install_packages
 install_zsh_plugins
-install_uv
-install_fnm
-install_rustup
-install_golang
