@@ -23,7 +23,7 @@ install_zsh_plugins() {
 		log_info "oh-my-zsh already installed, skipping..."
 	fi
 
-	ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+	ZSH_CUSTOM="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
 
 	ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
 	if [ ! -d "${ZSH_AUTOSUGGESTIONS}" ] && ! git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "${ZSH_AUTOSUGGESTIONS}"; then
