@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 FIREFOX_DIR="${FIREFOX_DIR:-$HOME/.config/mozilla/firefox}"
 PROFILE_GROUPS_DIR="$FIREFOX_DIR/Profile Groups"
 
@@ -34,25 +35,18 @@ EOF
 	if [ ! -d "$FIREFOX_DIR/$path" ]; then
 		mkdir -p "$FIREFOX_DIR/$path"
 	fi
+
+	if [ ! -f "$FIREFOX_DIR/$path/user.js" ]; then
+		cp -f "$SCRIPT_DIR/user.js" "$FIREFOX_DIR/$path/user.js"
+	fi
 }
 
 
-# Initialize Profile Groups database
+# Get Profile Groups database
 STORE_ID="$(find_with_ending "$PROFILE_GROUPS_DIR" ".sqlite" | head -n 1)"
 if [ -z "$STORE_ID" ]; then
-	if ! command -v firefox >/dev/null 2>&1; then
-		echo "error: firefox not found in PATH" >&2
-		exit 1
-	fi
-
-	echo "info: no Firefox Profile Groups database found; initializing in headless mode..." >&2
-	timeout 5s firefox --headless about:blank >/dev/null 2>&1 || true
-
-	STORE_ID="$(find_with_ending "$PROFILE_GROUPS_DIR" ".sqlite" | head -n 1)"
-	if [ -z "$STORE_ID" ]; then
-		echo "error: failed to initialize Profile Groups sqlite database" >&2
-		exit 1
-	fi
+	echo "error: no Firefox Profile Groups database found" >&2
+	exit 1
 fi
 
 
