@@ -3,64 +3,6 @@
 source "$(dirname "${0}")/utils.sh"
 
 
-check_distro() {
-	if [ ! -f /etc/os-release ]; then
-		log_fatal "/etc/os-release is not a regular file"
-	fi
-
-	local distros="Arch CachyOS Ubuntu Debian"
-
-	for distro in ${distros}; do
-		local lowercase_distro
-		lowercase_distro="$(echo "${distro}" | tr "A-Z" "a-z")"
-
-		if grep -q "^ID=${lowercase_distro}$" /etc/os-release; then
-			DISTRO="${distro}"
-			log_info "Running script for ${distro} distro..."
-		fi
-	done
-
-	if [ -z "${DISTRO:-}" ]; then
-		local distros_str
-		distros_str="$(echo "${distros}" | sed -E 's/ /, /g; s/, ([^,]*)$/ and \1/')"
-		log_fatal "This script only supports ${distros_str} distros"
-	fi
-
-	if ! yn_question "Continue?"; then
-		log_info "Exiting..."
-		exit 0
-	fi
-}
-
-
-install_packages() {
-	local common_packages="git less curl unzip make bash zsh tmux"
-
-	local update_command
-	local install_command
-
-	if [ "${DISTRO}" = "Arch" ] || [ "${DISTRO}" = "CachyOS" ]; then
-		local pacman_packages="${common_packages}"
-		update_command="sudo pacman -Syu --noconfirm"
-		install_command="sudo pacman -S --needed --noconfirm ${pacman_packages}"
-	elif [ "${DISTRO}" = "Ubuntu" ] || [ "${DISTRO}" = "Debian" ]; then
-		local apt_packages="${common_packages}"
-		update_command="sudo apt update && sudo apt upgrade -y"
-		install_command="sudo apt install -y ${apt_packages}"
-	fi
-
-	log_info "Updating packages..."
-	if ! eval "${update_command}"; then
-		log_fatal "Failed to update packages"
-	fi
-
-	log_info "Installing packages..."
-	if ! eval "${install_command}"; then
-		log_fatal "Failed to install packages"
-	fi
-}
-
-
 install_zsh_plugins() {
 	log_info "Installing zsh plugins..."
 
@@ -95,6 +37,9 @@ install_zsh_plugins() {
 }
 
 
-check_distro
-install_packages
+COMMON_PACKAGES="git less curl unzip make bash zsh tmux"
+
+check_distro "Arch CachyOS Ubuntu Debian"
+install_packages "Arch CachyOS" "sudo pacman -Syu --noconfirm" "sudo pacman -S --needed --noconfirm ${COMMON_PACKAGES}"
+install_packages "Ubuntu Debian" "sudo apt update && sudo apt upgrade -y" "sudo apt install -y ${COMMON_PACKAGES}"
 install_zsh_plugins
