@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "${0}")/utils.sh"
 
 
 check_distro() {
@@ -8,7 +8,7 @@ check_distro() {
 		log_fatal "/etc/os-release is not a regular file"
 	fi
 
-	local distros="Arch Ubuntu Debian"
+	local distros="Arch CachyOS Ubuntu Debian"
 
 	for distro in ${distros}; do
 		local lowercase_distro
@@ -22,7 +22,7 @@ check_distro() {
 
 	if [ -z "${DISTRO:-}" ]; then
 		local distros_str
-		distros_str="$(echo "$distros" | sed -E 's/ /, /g; s/, ([^,]*)$/ and \1/')"
+		distros_str="$(echo "${distros}" | sed -E 's/ /, /g; s/, ([^,]*)$/ and \1/')"
 		log_fatal "This script only supports ${distros_str} distros"
 	fi
 
@@ -39,11 +39,11 @@ install_packages() {
 	local update_command
 	local install_command
 
-	if [ "${DISTRO}" = "Arch" ]; then
+	if [ "${DISTRO}" = "Arch" ] || [ "${DISTRO}" = "CachyOS" ]; then
 		local pacman_packages="${common_packages}"
 		update_command="sudo pacman -Syu --noconfirm"
 		install_command="sudo pacman -S --needed --noconfirm ${pacman_packages}"
-	elif [ "$DISTRO" = "Ubuntu" ] || [ "$DISTRO" = "Debian" ]; then
+	elif [ "${DISTRO}" = "Ubuntu" ] || [ "${DISTRO}" = "Debian" ]; then
 		local apt_packages="${common_packages}"
 		update_command="sudo apt update && sudo apt upgrade -y"
 		install_command="sudo apt install -y ${apt_packages}"
@@ -64,7 +64,7 @@ install_packages() {
 install_zsh_plugins() {
 	log_info "Installing zsh plugins..."
 
-	if [ ! -d "$HOME/.oh-my-zsh" ]; then
+	if [ ! -d "${HOME}/.oh-my-zsh" ]; then
 		local install_script
 		install_script="$(mktemp)"
 		if ! curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o "${install_script}"; then
